@@ -35,7 +35,11 @@ async function call(path, body, token) {
   return JSON.parse(text);
 }
 
-async function connect(point, apiLogin) {
+async function connect(point, rawLogin) {
+  // pbpaste и формы GitHub могут добавить пробелы или перевод строки
+  const apiLogin = String(rawLogin).trim();
+  if (apiLogin !== rawLogin) console.log(`${point}: у ключа убраны пробелы по краям`);
+  console.log(`${point}: длина ключа ${apiLogin.length}`);
   const { token } = await call('/api/1/access_token', { apiLogin });
   const { organizations } = await call('/api/1/organizations', { returnAdditionalInfo: false, includeDisabled: false }, token);
   if (!organizations?.length) throw new Error(`${point}: у API-логина нет организаций`);
