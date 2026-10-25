@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Меню Alibaba Doner</title>
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="dc-shim.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#141414}a:hover{color:#9E1B2A}
+</style>
+</helmet>
+<div style="width: 100%; background: #FFFFFF; color: #141414; font-family: Manrope, system-ui, sans-serif">
+
+<header style="padding: 20px 24px; border-bottom: 1px solid #E6E2DC">
+<div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="a-home.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none">
+<svg aria-hidden="true" width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="{{accent}}" stroke-width="2"><rect x="6" y="6" width="16" height="16"></rect><rect x="6" y="6" width="16" height="16" transform="rotate(45 14 14)"></rect></svg>
+<span style="font-family: Unbounded, sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 0.02em">ALIBABA DÖNER</span>
+</a>
+<nav aria-label="Основное меню" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 15px; font-weight: 600">
+<a href="a-menu.html" style="text-decoration: none; color: {{accent}}">Меню</a>
+<a href="a-home.html" style="text-decoration: none">Точки</a>
+<div role="group" aria-label="Язык" style="display: inline-flex; padding: 3px; border-radius: 999px; background: #F6F3EE; gap: 2px">
+<button type="button" style="height: 44px; min-width: 52px; border: 0; border-radius: 999px; background: #141414; color: #FFFFFF; font: 700 14px Manrope, sans-serif">RU</button>
+<button type="button" style="height: 44px; min-width: 52px; border: 0; border-radius: 999px; background: transparent; color: #141414; font: 700 14px Manrope, sans-serif">TR</button>
+<button type="button" style="height: 44px; min-width: 52px; border: 0; border-radius: 999px; background: transparent; color: #141414; font: 700 14px Manrope, sans-serif">EN</button>
+</div>
+</nav>
+</div>
+</header>
+
+<section style="padding: 56px 24px 112px">
+<div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: #5C5C5C; font-weight: 600">Afiyet olsun</div>
+<h1 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 700; font-size: clamp(36px, 5vw, 64px); line-height: 1.02">Меню</h1>
+<p style="margin: 0; max-width: 620px; font-size: 17px; line-height: 1.6; color: #3A3A3A">Это витрина: заказать можно в Яндекс.Еде у ближайшей точки. Фото и цены обновляются автоматически.</p>
+</div>
+
+<div role="group" aria-label="Категории" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="5">
+<button type="button" onClick="{{c.pick}}" style="{{c.style}}">{{c.label}}</button>
+</sc-for>
+</div>
+
+<sc-if value="{{hasOpen}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; gap: 32px; padding: 24px; border-radius: 28px; background: #F6F3EE">
+<div style="flex: 1 1 360px; aspect-ratio: 4 / 3; border-radius: 20px; background: #EAE5DD; display: flex; align-items: center; justify-content: center; color: #8C8C8C; font-size: 13px">большое фото блюда</div>
+<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 18px; justify-content: center">
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1">{{open.name}}</h2>
+<div style="font-size: 16px; line-height: 1.6; color: #3A3A3A">[Состав из Яндекс.Еды / iiko: мясо, лаваш, овощи, соус]</div>
+<div style="display: flex; gap: 24px; font-size: 15px; color: #5C5C5C"><span>[вес] г</span><span>[ккал] ккал</span></div>
+<div style="font-family: Unbounded, sans-serif; font-weight: 600; font-size: 28px; color: {{accent}}">[ЦЕНА] ₽</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="#" style="display: inline-flex; align-items: center; height: 52px; padding: 0 26px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-weight: 700; font-size: 16px; text-decoration: none">Заказать в Яндекс.Еде</a>
+<button type="button" onClick="{{close}}" style="height: 52px; padding: 0 22px; border-radius: 999px; border: 1.5px solid #141414; background: transparent; color: #141414; font: 700 16px Manrope, sans-serif; cursor: pointer">Закрыть</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 32px 24px">
+<sc-for list="{{dishes}}" as="d" hint-placeholder-count="8">
+<button type="button" onClick="{{d.pick}}" aria-label="{{d.name}}: подробнее" style="all: unset; cursor: pointer; display: flex; flex-direction: column; gap: 14px">
+<span style="display: flex; aspect-ratio: 4 / 3; border-radius: 20px; background: #F6F3EE; align-items: center; justify-content: center; color: #8C8C8C; font-size: 13px">фото из Яндекс.Еды</span>
+<span style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px">
+<span style="font-family: Unbounded, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.2">{{d.name}}</span>
+<span style="font-family: Unbounded, sans-serif; font-weight: 600; font-size: 17px; color: {{accent}}; white-space: nowrap">[ЦЕНА] ₽</span>
+</span>
+<span style="font-size: 14px; color: #5C5C5C">[вес] г · {{d.tag}}</span>
+</button>
+</sc-for>
+</div>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#9E1B2A","options":["#9E1B2A","#8A1C2B","#B0202E","#6E1423"]},"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+renderVals() {
+const accent = this.props.accent ?? '#9E1B2A';
+const st = this.state || {};
+const cat = st.cat || 'all';
+const pill = (on) => 'height: 44px; padding: 0 20px; border-radius: 999px; cursor: pointer; font: 700 14px Manrope, sans-serif; ' + (on ? 'border: 1.5px solid #141414; background: #141414; color: #FFFFFF' : 'border: 1.5px solid #E6E2DC; background: #FFFFFF; color: #141414');
+const cats = [['all', 'Всё'], ['doner', 'Дёнер'], ['plates', 'На тарелке'], ['sweet', 'Десерты'], ['drinks', 'Напитки']].map(([id, label]) => ({ label, style: pill(id === cat), pick: () => this.setState({ cat: id }) }));
+const all = [
+['Дёнер в лаваше', 'doner'], ['Дёнер в хлебе', 'doner'], ['Дюрюм', 'doner'], ['Искендер', 'plates'],
+['Дёнер на тарелке', 'plates'], ['Пахлава', 'sweet'], ['Айран', 'drinks'], ['Турецкий чай', 'drinks']
+];
+const tagName = { doner: 'Дёнер', plates: 'На тарелке', sweet: 'Десерты', drinks: 'Напитки' };
+const dishes = all.filter(([, c]) => cat === 'all' || c === cat).map(([name, c]) => ({ name, tag: tagName[c], pick: () => this.setState({ open: name }) }));
+return { accent, cats, dishes, hasOpen: !!st.open, open: { name: st.open || '' }, close: () => this.setState({ open: null }) };
+}
+}
+window.__DCComponent = Component;
+</script>
+</body>
+</html>

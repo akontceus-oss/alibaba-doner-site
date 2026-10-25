@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Вариант В: главная</title>
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="dc-shim.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#141414;text-underline-offset:4px}a:hover{color:#9E1B2A}
+::selection{background:#9E1B2A;color:#FFFFFF}
+:focus-visible{outline:2px solid #9E1B2A;outline-offset:3px}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important}}
+@media (max-width: 760px){.stack{grid-template-columns:1fr!important}.stack>*{grid-column:auto!important;grid-row:auto!important}.stack2{grid-template-columns:repeat(2,minmax(0,1fr))!important}.stack2>*:first-child{grid-column:1 / -1!important;grid-row:auto!important}}
+</style>
+</helmet>
+<div style="width: 100%; background: #FFFFFF; color: #141414; font-family: Manrope, system-ui, sans-serif; font-size: 17px; line-height: 1.55">
+
+<section aria-label="Alibaba Döner" style="position: relative; min-height: 780px; background: #141414; color: #FFFFFF; display: flex; flex-direction: column; justify-content: space-between">
+<img src="images/n-doner-lavash.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; opacity: 0.6">
+<div style="position: absolute; top: 96px; right: 24px; padding: 6px 12px; border-radius: 999px; background: #2A2A2A; color: #BDBDBD; font-size: 13px">Здесь будет видео нарезки, пока стоит фото</div>
+
+<header style="position: relative; padding: 20px 24px">
+<div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#" aria-label="Alibaba Doneri, на главную" style="display: flex; align-items: center">
+<img src="images/logo-light.png" alt="Alibaba Doneri" style="height: 44px; width: auto; display: block">
+</a>
+<nav aria-label="Основное меню" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 15px; font-weight: 600">
+<a href="#menu" style="color: #FFFFFF; text-decoration: none">Меню</a>
+<a href="#points" style="color: #FFFFFF; text-decoration: none">Точки</a>
+<a href="#about" style="color: #FFFFFF; text-decoration: none">О нас</a>
+<div role="group" aria-label="Язык" style="display: inline-flex; padding: 3px; border-radius: 999px; background: #2A2A2A; gap: 2px">
+<sc-for list="{{langs}}" as="l" hint-placeholder-count="3">
+<button type="button" onClick="{{l.pick}}" aria-pressed="{{l.on}}" style="{{l.style}}">{{l.code}}</button>
+</sc-for>
+</div>
+</nav>
+</div>
+</header>
+
+<div style="position: relative; padding: 0 24px 64px">
+<div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 40px">
+<div style="flex: 1 1 640px; display: flex; flex-direction: column; gap: 28px; animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both">
+<h1 style="margin: 0; max-width: 900px; font-family: Unbounded, sans-serif; font-weight: 700; font-size: clamp(40px, 6vw, 92px); line-height: 1.0; letter-spacing: -0.03em; text-wrap: balance">Донер, который режут при тебе</h1>
+<p style="margin: 0; max-width: 520px; font-size: 19px; color: #E6E6E6">Турецкий донер с вертела. Девять точек в Москве и Рязани, доставка через Яндекс.Еду.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="#points" style="display: inline-flex; align-items: center; height: 56px; padding: 0 30px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-weight: 700; font-size: 16px; text-decoration: none">Найти точку рядом</a>
+<a href="#menu" style="display: inline-flex; align-items: center; height: 56px; padding: 0 30px; border-radius: 999px; background: #FFFFFF; color: #141414; font-weight: 700; font-size: 16px; text-decoration: none">Смотреть меню</a>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; background: #2A2A2A; font-size: 15px; font-weight: 600">
+<span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: {{statusDot}}"></span>
+<span>{{statusText}}</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="about" style="padding: 144px 24px 120px">
+<div class="stack" style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: end">
+<div style="grid-column: span 7; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance">[Заголовок о бренде от Андрея]</h2>
+<p style="margin: 0; max-width: 62ch; font-size: 19px; line-height: 1.6">Готовим донер с 2011 года. [Текст об Alibaba Doneri: история, откуда рецепт, какое мясо и хлеб, кто стоит у вертела. Два-три коротких абзаца.]</p>
+<p style="margin: 0; max-width: 62ch; font-size: 19px; line-height: 1.6">[Второй абзац: атмосфера точек и почему к нам возвращаются.] Afiyet olsun!</p>
+</div>
+<div style="grid-column: 9 / span 4; min-width: 0; aspect-ratio: 4 / 5; border-radius: 24px; background: #F6F3EE; display: flex; align-items: center; justify-content: center; color: #5C5C5C; font-size: 14px; text-align: center; padding: 24px">Фото: мастер у вертела</div>
+</div>
+<div class="stack" style="max-width: 1280px; margin: 64px auto 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<div style="aspect-ratio: 3 / 2; border-radius: 20px; background: #F6F3EE"></div>
+<figcaption style="font-weight: 600">Вертел</figcaption>
+</figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<div style="aspect-ratio: 3 / 2; border-radius: 20px; background: #F6F3EE"></div>
+<figcaption style="font-weight: 600">Нарезка</figcaption>
+</figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<div style="aspect-ratio: 3 / 2; border-radius: 20px; background: #F6F3EE"></div>
+<figcaption style="font-weight: 600">Лаваш с огня</figcaption>
+</figure>
+</div>
+</section>
+
+<div style="padding: 0 24px">
+<div style="max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 20px">
+<div style="flex-grow: 1; height: 1px; background: #D9D4CC"></div>
+<svg aria-hidden="true" width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="{{accent}}" stroke-width="1.6"><rect x="6" y="6" width="16" height="16"></rect><rect x="6" y="6" width="16" height="16" transform="rotate(45 14 14)"></rect></svg>
+<div style="flex-grow: 1; height: 1px; background: #D9D4CC"></div>
+</div>
+</div>
+
+<section id="menu" style="padding: 120px 24px">
+<div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.05; letter-spacing: -0.02em">Меню</h2>
+<a href="a-menu.html" style="font-weight: 700">Всё меню с ценами</a>
+</div>
+<div class="stack2" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+<article style="grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; gap: 16px; min-width: 0">
+<img src="images/n-doner-lavash.jpg" alt="Донер в лаваше" style="flex-grow: 1; width: 100%; min-height: 420px; max-height: 520px; object-fit: cover; border-radius: 24px; display: block; background: #141414">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px">
+<h3 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 700; font-size: 28px; line-height: 1.15">Донер в лаваше</h3>
+<span style="font-family: Unbounded, sans-serif; font-weight: 600; font-size: 24px; color: {{accent}}; font-variant-numeric: tabular-nums; white-space: nowrap">[ЦЕНА] ₽</span>
+</div>
+<p style="margin: 0; max-width: 52ch; color: #3A3A3A">[Состав из Яндекс.Еды: мясо, лаваш, овощи, соус] · [вес] г</p>
+</article>
+<sc-for list="{{dishes}}" as="d" hint-placeholder-count="4">
+<article style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<img src="{{d.img}}" alt="{{d.name}}" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; display: block; background: #141414">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 4px 12px; flex-wrap: wrap">
+<h3 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 600; font-size: 17px; line-height: 1.2">{{d.name}}</h3>
+<span style="font-weight: 700; color: {{accent}}; font-variant-numeric: tabular-nums; white-space: nowrap">[ЦЕНА] ₽</span>
+</div>
+</article>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section id="points" style="padding: 0 24px 144px">
+<div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 700; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.05; letter-spacing: -0.02em">Где нас найти</h2>
+<div role="group" aria-label="Город" style="display: inline-flex; padding: 4px; border-radius: 999px; background: #F6F3EE; gap: 2px">
+<sc-for list="{{cities}}" as="c" hint-placeholder-count="2">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="{{c.style}}">{{c.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch">
+<ul style="flex: 1 1 380px; min-width: 0; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{points}}" as="p" hint-placeholder-count="4">
+<li>
+<button type="button" onClick="{{p.pick}}" aria-pressed="{{p.on}}" style="{{p.rowStyle}}">
+<span style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-family: Unbounded, sans-serif; font-weight: 600; font-size: 17px">{{p.name}}</span>
+<span style="font-size: 15px; opacity: 0.8">{{p.address}}</span>
+</span>
+<span style="font-size: 14px; font-weight: 600; white-space: nowrap">до 23:00</span>
+</button>
+</li>
+</sc-for>
+</ul>
+<div style="flex: 2 1 560px; min-width: 0; min-height: 520px; position: relative; border-radius: 28px; background: #EFEBE4; overflow: hidden">
+<div style="position: absolute; top: 20px; left: 24px; font-size: 13px; color: #5C5C5C">Схема. На сайте здесь будет Яндекс.Карта</div>
+<sc-for list="{{points}}" as="p" hint-placeholder-count="4">
+<span aria-hidden="true" style="{{p.pinStyle}}">
+<svg width="100%" height="100%" viewBox="0 0 28 28" fill="currentColor"><rect x="6" y="6" width="16" height="16"></rect><rect x="6" y="6" width="16" height="16" transform="rotate(45 14 14)"></rect></svg>
+</span>
+</sc-for>
+<div style="position: absolute; left: 24px; right: 24px; bottom: 24px; max-width: 440px; padding: 24px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 12px 32px rgba(20, 20, 20, 0.14); display: flex; flex-direction: column; gap: 12px">
+<div style="font-family: Unbounded, sans-serif; font-weight: 700; font-size: 20px">{{sel.name}}</div>
+<div style="font-size: 15px; color: #3A3A3A">{{sel.address}} · ежедневно [10:00–23:00]</div>
+<a href="#" style="font-weight: 700; text-decoration: none">+7 [ТЕЛЕФОН]</a>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px">
+<a href="#" style="display: inline-flex; align-items: center; height: 46px; padding: 0 20px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-weight: 700; font-size: 15px; text-decoration: none">Доставка</a>
+<a href="#" style="display: inline-flex; align-items: center; height: 46px; padding: 0 20px; border-radius: 999px; background: #141414; color: #FFFFFF; font-weight: 700; font-size: 15px; text-decoration: none">Маршрут</a>
+<a href="a-location.html" style="display: inline-flex; align-items: center; height: 46px; padding: 0 12px; font-weight: 700; font-size: 15px">Страница точки</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer style="background: #141414; color: #FFFFFF; padding: 0 24px 40px">
+<div style="height: 14px; background-image: radial-gradient(circle, {{accent}} 1.4px, transparent 1.6px); background-size: 14px 14px; margin: 0 -24px 72px"></div>
+<div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px">
+<img src="images/skyline.png" alt="Стамбул: Босфорский мост и мечети, рисунок" style="width: 100%; max-width: 900px; height: auto; display: block; align-self: center; opacity: 0.85">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 32px">
+<img src="images/logo-light.png" alt="Alibaba Doneri" style="height: 56px; width: auto; display: block">
+<p style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 60px); line-height: 1.05; letter-spacing: -0.02em">Afiyet olsun!</p>
+<div style="display: flex; flex-wrap: wrap; gap: 48px; font-size: 16px">
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="color: #BDBDBD">Москва</span><a href="#points" style="color: #FFFFFF">4 точки</a></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="color: #BDBDBD">Рязань</span><a href="#points" style="color: #FFFFFF">5 точек</a></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="color: #BDBDBD">Мы в соцсетях</span><span><a href="#" style="color: #FFFFFF">Telegram</a> · <a href="#" style="color: #FFFFFF">ВКонтакте</a></span></div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 14px; color: #BDBDBD">
+<span>© Alibaba Doneri, 2011–2026</span><span>RU · TR · EN</span>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#9E1B2A","options":["#9E1B2A","#E31E25","#B0202E","#6E1423"]},"$preview":{"width":1440,"height":3500}}'>
+class Component extends DCLogic {
+renderVals() {
+const accent = this.props.accent ?? '#9E1B2A';
+const st = this.state || {};
+const lang = st.lang || 'RU';
+const city = st.city || 'msk';
+const sel = st.sel || 0;
+const pill = (on, dark) => 'height: 44px; min-width: 52px; padding: 0 18px; border: 0; border-radius: 999px; cursor: pointer; font: 700 14px Manrope, sans-serif; ' + (on ? (dark ? 'background: #FFFFFF; color: #141414' : 'background: #141414; color: #FFFFFF') : 'background: transparent; color: ' + (dark ? '#FFFFFF' : '#141414'));
+const langs = ['RU', 'TR', 'EN'].map((code) => ({ code, on: code === lang, style: pill(code === lang, true), pick: () => this.setState({ lang: code }) }));
+const cities = [{ id: 'msk', label: 'Москва · 4' }, { id: 'rzn', label: 'Рязань · 5' }].map((c) => ({ ...c, on: c.id === city, style: pill(c.id === city, false), pick: () => this.setState({ city: c.id, sel: 0 }) }));
+const n = city === 'msk' ? 4 : 5;
+const cityName = city === 'msk' ? 'Москва' : 'Рязань';
+const spots = [[22, 30], [58, 22], [70, 48], [36, 52], [80, 28]];
+const points = Array.from({ length: n }, (_, i) => {
+const on = i === sel;
+const [x, y] = spots[i];
+return {
+name: '[Название точки ' + (i + 1) + ']',
+address: cityName + ', [адрес ' + (i + 1) + ']',
+on,
+pick: () => this.setState({ sel: i }),
+rowStyle: 'all: unset; box-sizing: border-box; width: 100%; min-height: 84px; padding: 18px 22px; border-radius: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; ' + (on ? 'background: #141414; color: #FFFFFF' : 'background: #F6F3EE; color: #141414'),
+pinStyle: 'position: absolute; left: ' + x + '%; top: ' + y + '%; transform: translate(-50%, -50%); display: block; color: ' + (on ? accent : '#141414') + '; width: ' + (on ? 40 : 24) + 'px; height: ' + (on ? 40 : 24) + 'px'
+};
+});
+const h = new Date().getHours();
+const open = h >= 10 && h < 23;
+return {
+accent, langs, cities, points,
+sel: points[Math.min(sel, n - 1)],
+statusText: open ? 'Сейчас открыто, до 23:00' : 'Сейчас закрыто, откроемся в 10:00',
+statusDot: open ? '#4CC38A' : '#BDBDBD',
+dishes: [
+{ name: 'Донер в тарелке', img: 'images/n-doner-plate.jpg' },
+{ name: 'Искандер кебаб', img: 'images/n-iskender.jpg' },
+{ name: 'Шаурма в лаваше', img: 'images/n-shawarma-lavash.jpg' },
+{ name: 'Сендвич донер', img: 'images/n-doner-sandwich.jpg' }
+]
+};
+}
+}
+window.__DCComponent = Component;
+</script>
+</body>
+</html>
