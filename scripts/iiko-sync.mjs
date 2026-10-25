@@ -12,8 +12,8 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 
 const API = 'https://api-ru.iiko.services';
-const MENU_NAME = process.env.IIKO_MENU_NAME || 'Сайт';
-const FALLBACK_MENU_NAME = 'ЯндексЕда';
+const MENU_NAME = process.env.IIKO_MENU_NAME || 'Сайт (копия ЯндексЕда)';
+const FALLBACK_MENU_NAME = 'Сайт';
 // Служебные группы iiko, которые не показываем на сайте
 const HIDDEN_CATEGORIES = new Set(['Допы', 'Служебные', 'Магазин', 'Яндекс Еда']);
 const mode = process.argv[2] || 'menu';
