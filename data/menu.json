@@ -1,0 +1,626 @@
+{
+  "updatedAt": "2026-10-25T07:00:00Z",
+  "source": "Ручная выгрузка из iikoWeb (меню «ЯндексЕда»), заменится первым запуском синхронизации",
+  "points": [
+    {
+      "point": "aminevskoe",
+      "menuName": "ЯндексЕда",
+      "organizations": [],
+      "terminalGroups": [],
+      "categories": [
+        {
+          "id": "Допы",
+          "name": "Допы"
+        },
+        {
+          "id": "Закуски",
+          "name": "Закуски"
+        },
+        {
+          "id": "Соусы",
+          "name": "Соусы"
+        },
+        {
+          "id": "Салаты",
+          "name": "Салаты"
+        },
+        {
+          "id": "Супы",
+          "name": "Супы"
+        },
+        {
+          "id": "Выпечка",
+          "name": "Выпечка"
+        },
+        {
+          "id": "Горячие блюда",
+          "name": "Горячие блюда"
+        },
+        {
+          "id": "Напитки",
+          "name": "Напитки"
+        },
+        {
+          "id": "Комбо",
+          "name": "Комбо"
+        },
+        {
+          "id": "Донер / шаурма",
+          "name": "Донер / шаурма"
+        }
+      ],
+      "items": [
+        {
+          "id": null,
+          "sku": "00461",
+          "categoryId": "Допы",
+          "name": "Острый перчик",
+          "description": "",
+          "weight": null,
+          "price": 65,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00437",
+          "categoryId": "Закуски",
+          "name": "Картофель по-деревенски",
+          "description": "Обжаренные картофельные дольки.",
+          "weight": null,
+          "price": 269,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00438",
+          "categoryId": "Закуски",
+          "name": "Картофель фри",
+          "description": "Обжаренный картофель во фритюре",
+          "weight": null,
+          "price": 254,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00439",
+          "categoryId": "Закуски",
+          "name": "Наггетсы",
+          "description": "Куриное филе в панировке, обжаренное во фритюре",
+          "weight": null,
+          "price": 413,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00440",
+          "categoryId": "Соусы",
+          "name": "Кетчуп",
+          "description": "",
+          "weight": null,
+          "price": 69,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00442",
+          "categoryId": "Соусы",
+          "name": "Кисло-сладкий",
+          "description": "",
+          "weight": null,
+          "price": 69,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00441",
+          "categoryId": "Соусы",
+          "name": "Сырный",
+          "description": "",
+          "weight": null,
+          "price": 69,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00443",
+          "categoryId": "Салаты",
+          "name": "Салат чобан",
+          "description": "Легкий салат из мелко нарезанных свежих томатов, хрустящих огурцов, болгарского перца и лука с ароматной кинзой. Заправляется пикантным бальзамическим соусом.",
+          "weight": null,
+          "price": 443,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00444",
+          "categoryId": "Супы",
+          "name": "Крем-суп куриный",
+          "description": "Суп на курином бульоне с добавлением картофеля, лука, моркови. Подается с долькой лимона.",
+          "weight": null,
+          "price": 509,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00445",
+          "categoryId": "Супы",
+          "name": "Чечевичный суп",
+          "description": "Красная чечевица на курином бульоне с добавлением лука, моркови. Подается с долькой лимона.",
+          "weight": null,
+          "price": 473,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00429",
+          "categoryId": "Выпечка",
+          "name": "Экмек лепешка",
+          "description": "Традиционный мягкий хлеб.",
+          "weight": null,
+          "price": 80,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00423",
+          "categoryId": "Выпечка",
+          "name": "Пиде с говяжьим фаршем (кыймалы)",
+          "description": "Традиционная турецкая лепёшка в форме лодочки. Нежное дрожжевое тесто и сочная начинка из рубленой говядины с овощами создают идеальный баланс вкуса. В составе: мягкое дрожжевое тесто, говяжий фарш, репчатый лук, болгарский перец, помидоры, чеснок, оливковое масло, копчёная паприка, тмин, хлопья чили, свежая петрушка. 30×15 см.",
+          "weight": null,
+          "price": 820,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00424",
+          "categoryId": "Выпечка",
+          "name": "Пиде с курицей",
+          "description": "Аппетитное пиде с куриным мясом и овощами. В составе: куриное рубленое мясо, перец болгарский, томаты, зеленая петрушка, оливковое масло и сыр моцарелла. 30х15 см.",
+          "weight": null,
+          "price": 630,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00425",
+          "categoryId": "Выпечка",
+          "name": "Пиде с рубленой говядиной",
+          "description": "Ароматное пиде с рубленой говядиной. В составе: нежное тесто, рубленая говядина, перец болгарский, томаты, зелень, оливковое масло и сыр моцарелла. 30х15 см.",
+          "weight": null,
+          "price": 893,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00426",
+          "categoryId": "Выпечка",
+          "name": "Пиде с сыром и яйцом",
+          "description": "Аппетитное пиде с двумя видами сыра. В составе: нежное тесто, сыр гауда, сыр моцарелла и яйцо. 30х15 см.",
+          "weight": null,
+          "price": 803,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00427",
+          "categoryId": "Выпечка",
+          "name": "Пиде со шпинатом",
+          "description": "Аппетитное пиде со шпинатом и сыром. В составе: нежное тесто, шпинат, сыр моцарелла и оливковое масло. 30х15 см.",
+          "weight": null,
+          "price": 818,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00428",
+          "categoryId": "Выпечка",
+          "name": "Пиде трио",
+          "description": "Сытное пиде с миксом мяса и овощей. В составе: куриное рубленое мясо, рубленная говядина, перец болгарский, томаты, зеленая петрушка, оливковое масло и сыр моцарелла. 30х15 см.",
+          "weight": null,
+          "price": 893,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00421",
+          "categoryId": "Выпечка",
+          "name": "Лахмаджун классик",
+          "description": "Классический лахмаджун с мясом и овощами. В составе: тонкая лепешка, баранина с говядиной, томаты, болгарский перец, зеленая петрушка, репчатый лук, дольки лимона и оливковое масло. 30 см.",
+          "weight": null,
+          "price": 548,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00422",
+          "categoryId": "Выпечка",
+          "name": "Лахмаджун с сыром",
+          "description": "Лахмаджун с мясом, овощами и сыром. В составе: тонкая лепешка, баранина с говядиной, сыр моцарелла, томаты, болгарский перец, зеленая петрушка, репчатый лук, дольки лимона и оливковое масло. 30 см.",
+          "weight": null,
+          "price": 593,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00433",
+          "categoryId": "Горячие блюда",
+          "name": "Шаурма в лаваше",
+          "description": "Куриное мясо, томаты и маринованные огурчики в лаваше. Заправляется томатным соусом и майонезом с добавлением репчатого лука и свежей петрушки",
+          "weight": null,
+          "price": 572,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00456",
+          "categoryId": "Горячие блюда",
+          "name": "Долма",
+          "description": "Традиционная долма с говядиной. В составе: виноградные листья, рис, помидоры, болгарский перец и зеленый лук",
+          "weight": null,
+          "price": 773,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00431",
+          "categoryId": "Горячие блюда",
+          "name": "Искандер кебаб",
+          "description": "Традиционное блюдо с мясом говядины и баранины. В составе: обжаренные гренки, мацони, томатный соус, запеченные на мангале болгарский перец и помидоры, деревенское натуральное масло",
+          "weight": null,
+          "price": 2250,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00430",
+          "categoryId": "Горячие блюда",
+          "name": "Донер в тарелке",
+          "description": "Классический донер на тарелке с мясом говядины и баранины. В составе: картофель фри, овощи, репчатый лук, свежая петрушка и томатный соус",
+          "weight": null,
+          "price": 884,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00432",
+          "categoryId": "Горячие блюда",
+          "name": "Плов донер",
+          "description": "Плов донер с мясом говядины и баранины. В составе: рис, овощи, репчатый лук и томатный соус",
+          "weight": null,
+          "price": 929,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00446",
+          "categoryId": "Напитки",
+          "name": "Айран 0,5 л",
+          "description": "",
+          "weight": null,
+          "price": 286,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00478",
+          "categoryId": "Напитки",
+          "name": "Сок Rich вишня 0,3 л стекло",
+          "description": "",
+          "weight": null,
+          "price": 224,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00476",
+          "categoryId": "Напитки",
+          "name": "Добрый кола без сахара 0,33 л стекло [AT]",
+          "description": "",
+          "weight": null,
+          "price": 255,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00463",
+          "categoryId": "Напитки",
+          "name": "Добрый кола без сахара 0,5 л [AT]",
+          "description": "",
+          "weight": null,
+          "price": 240,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00462",
+          "categoryId": "Напитки",
+          "name": "Кока-кола 0,5 л [AT]",
+          "description": "",
+          "weight": null,
+          "price": 240,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00467",
+          "categoryId": "Напитки",
+          "name": "Сок Добрый апельсин 0,3 л",
+          "description": "",
+          "weight": null,
+          "price": 224,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00466",
+          "categoryId": "Напитки",
+          "name": "Сок Добрый мультифрукт 0,3 л",
+          "description": "",
+          "weight": null,
+          "price": 224,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00468",
+          "categoryId": "Напитки",
+          "name": "Сок Добрый яблоко 0,3 л",
+          "description": "",
+          "weight": null,
+          "price": 224,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00470",
+          "categoryId": "Напитки",
+          "name": "Шалгам 0,3 л",
+          "description": "",
+          "weight": null,
+          "price": 235,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00469",
+          "categoryId": "Напитки",
+          "name": "Шалгам острый 0,3 л",
+          "description": "",
+          "weight": null,
+          "price": 235,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00464",
+          "categoryId": "Напитки",
+          "name": "Burn [AT]",
+          "description": "ж/б",
+          "weight": null,
+          "price": 245,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00471",
+          "categoryId": "Напитки",
+          "name": "Fanta 0,3 л [AT]",
+          "description": "ж/б",
+          "weight": null,
+          "price": 235,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00465",
+          "categoryId": "Напитки",
+          "name": "Спрайт 0,3 л [AT]",
+          "description": "ж/б",
+          "weight": null,
+          "price": 235,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00473",
+          "categoryId": "Напитки",
+          "name": "Чай Rich зеленый малина 0,5 л",
+          "description": "",
+          "weight": null,
+          "price": 235,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00472",
+          "categoryId": "Напитки",
+          "name": "Чай Rich зеленый манго 0,5 л",
+          "description": "",
+          "weight": null,
+          "price": 235,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00474",
+          "categoryId": "Напитки",
+          "name": "Чай Rich черный лимон 0,5 л",
+          "description": "",
+          "weight": null,
+          "price": 235,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00475",
+          "categoryId": "Напитки",
+          "name": "Сок Rich апельсин 0,3 л стекло",
+          "description": "",
+          "weight": null,
+          "price": 224,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00477",
+          "categoryId": "Напитки",
+          "name": "Добрый лимон-лайм 0,33 л стекло [AT]",
+          "description": "",
+          "weight": null,
+          "price": 255,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00460",
+          "categoryId": "Напитки",
+          "name": "Fanta 0,33 л стекло [AT]",
+          "description": "",
+          "weight": null,
+          "price": 255,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00449",
+          "categoryId": "Напитки",
+          "name": "Морс ягодный 0,3 л",
+          "description": "Собственное производство",
+          "weight": null,
+          "price": 240,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00451",
+          "categoryId": "Напитки",
+          "name": "Сок Rich яблоко 0,3 л стекло",
+          "description": "",
+          "weight": null,
+          "price": 224,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00454",
+          "categoryId": "Напитки",
+          "name": "Вода без газа 0,5 л",
+          "description": "",
+          "weight": null,
+          "price": 294,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00455",
+          "categoryId": "Напитки",
+          "name": "Вода газированная 0,5 л",
+          "description": "",
+          "weight": null,
+          "price": 294,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00452",
+          "categoryId": "Напитки",
+          "name": "Добрый кола 0,3 л [AT]",
+          "description": "ж/б",
+          "weight": null,
+          "price": 235,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00453",
+          "categoryId": "Напитки",
+          "name": "Добрый Кола 0,5 л [AT]",
+          "description": "",
+          "weight": null,
+          "price": 240,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00447",
+          "categoryId": "Напитки",
+          "name": "Добрый кола 0,33 л стекло [AT]",
+          "description": "",
+          "weight": null,
+          "price": 255,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00458",
+          "categoryId": "Комбо",
+          "name": "Комбо донер",
+          "description": "Сытный комбо-набор с сэндвич донером. В составе: сэндвич донер, картофель фри, кока-кола 0,33 и кетчуп.",
+          "weight": null,
+          "price": 999,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00457",
+          "categoryId": "Комбо",
+          "name": "Комбо шаурма",
+          "description": "Сытный комбо-набор с шаурмой. В составе: шаурма в лаваше, картофель фри, Добрый кола 0,33 л. и кетчуп.",
+          "weight": null,
+          "price": 773,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00498",
+          "categoryId": "Донер / шаурма",
+          "name": "Шаурма на тарелке",
+          "description": "Шаурма на тарелке с куриным мясом. В составе: салат айсберг, рис, картофель фри и томатный соус",
+          "weight": null,
+          "price": 805,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00435",
+          "categoryId": "Донер / шаурма",
+          "name": "Сэндвич донер",
+          "description": "Сытный сэндвич с говядиной и бараниной. В составе: лепешка, маринованные огурчики, помидоры, репчатый лук, свежая петрушка, томатный соус и майонез",
+          "weight": null,
+          "price": 683,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00436",
+          "categoryId": "Донер / шаурма",
+          "name": "Сэндвич шаурма",
+          "description": "Аппетитный сэндвич с куриным мясом. В составе: круглая лепешка, маринованные огурчики, томаты, репчатый лук, свежая петрушка, томатный соус и майонез",
+          "weight": null,
+          "price": 479,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00433",
+          "categoryId": "Донер / шаурма",
+          "name": "Шаурма в лаваше",
+          "description": "Куриное мясо, томаты и маринованные огурчики в лаваше. Заправляется томатным соусом и майонезом с добавлением репчатого лука и свежей петрушки",
+          "weight": null,
+          "price": 572,
+          "image": null
+        },
+        {
+          "id": null,
+          "sku": "00434",
+          "categoryId": "Донер / шаурма",
+          "name": "Донер в лаваше",
+          "description": "Классический донер с говядиной и бараниной. В составе: картофель фри, маринованные огурчики, помидоры, репчатый лук, свежая петрушка, томатный соус и майонез",
+          "weight": null,
+          "price": 653,
+          "image": null
+        }
+      ]
+    }
+  ]
+}

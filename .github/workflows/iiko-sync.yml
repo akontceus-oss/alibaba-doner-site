@@ -1,0 +1,49 @@
+name: Синхронизация с iiko
+
+on:
+  schedule:
+    - cron: '0 0 * * *'      # меню: каждый день в 03:00 по Москве
+    - cron: '*/30 6-20 * * *' # стопы: каждые 30 минут с 09:00 до 23:30 по Москве
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Что обновить'
+        type: choice
+        options: [menu, stops]
+        default: menu
+
+permissions:
+  contents: write
+
+concurrency:
+  group: iiko-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Режим
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT";
+          elif [ "${{ github.event.schedule }}" = "0 0 * * *" ]; then echo "mode=menu" >> "$GITHUB_OUTPUT";
+          else echo "mode=stops" >> "$GITHUB_OUTPUT"; fi
+      - name: sharp для сжатия фото
+        if: steps.mode.outputs.mode == 'menu'
+        run: npm install --no-save sharp@0.33.5
+      - name: Забрать данные из iiko
+        env:
+          IIKO_API_LOGINS: ${{ secrets.IIKO_API_LOGINS }}
+          IIKO_API_LOGIN: ${{ secrets.IIKO_API_LOGIN }}
+        run: node scripts/iiko-sync.mjs ${{ steps.mode.outputs.mode }}
+      - name: Закоммитить изменения
+        run: |
+          git add data images/menu
+          if git diff --cached --quiet; then echo "Без изменений"; exit 0; fi
+          git -c user.name="iiko-sync" -c user.email="actions@github.com" commit -m "iiko: обновить ${{ steps.mode.outputs.mode }}"
+          git push
