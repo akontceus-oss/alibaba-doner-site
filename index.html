@@ -50,7 +50,7 @@ a{color:#141414;text-underline-offset:4px}a:hover{color:#9E1B2A}
 <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 40px">
 <div style="flex: 1 1 640px; display: flex; flex-direction: column; gap: 28px; animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both">
 <h1 style="margin: 0; max-width: 900px; font-family: Unbounded, sans-serif; font-weight: 700; font-size: clamp(40px, 6vw, 92px); line-height: 1.0; letter-spacing: -0.03em; text-wrap: balance">Донер, который режут при тебе</h1>
-<p style="margin: 0; max-width: 520px; font-size: 19px; color: #E6E6E6">Турецкий донер с вертела. Девять точек в Москве и Рязани, доставка через Яндекс.Еду.</p>
+<p style="margin: 0; max-width: 520px; font-size: 19px; color: #E6E6E6">Турецкий донер с вертела. Пять точек в Москве и Рязани, доставка через Яндекс.Еду.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 12px">
 <a href="#points" style="display: inline-flex; align-items: center; height: 56px; padding: 0 30px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-weight: 700; font-size: 16px; text-decoration: none">Найти точку рядом</a>
 <a href="#menu" style="display: inline-flex; align-items: center; height: 56px; padding: 0 30px; border-radius: 999px; background: #FFFFFF; color: #141414; font-weight: 700; font-size: 16px; text-decoration: none">Смотреть меню</a>
@@ -180,7 +180,7 @@ a{color:#141414;text-underline-offset:4px}a:hover{color:#9E1B2A}
 <p style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 60px); line-height: 1.05; letter-spacing: -0.02em">Afiyet olsun!</p>
 <div style="display: flex; flex-wrap: wrap; gap: 48px; font-size: 16px">
 <div style="display: flex; flex-direction: column; gap: 8px"><span style="color: #BDBDBD">Москва</span><a href="#points" style="color: #FFFFFF">4 точки</a></div>
-<div style="display: flex; flex-direction: column; gap: 8px"><span style="color: #BDBDBD">Рязань</span><a href="#points" style="color: #FFFFFF">5 точек</a></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="color: #BDBDBD">Рязань</span><a href="#points" style="color: #FFFFFF">1 точка</a></div>
 <div style="display: flex; flex-direction: column; gap: 8px"><span style="color: #BDBDBD">Мы в соцсетях</span><span><a href="#" style="color: #FFFFFF">Telegram</a> · <a href="#" style="color: #FFFFFF">ВКонтакте</a></span></div>
 </div>
 </div>
@@ -202,8 +202,8 @@ const city = st.city || 'msk';
 const sel = st.sel || 0;
 const pill = (on, dark) => 'height: 44px; min-width: 52px; padding: 0 18px; border: 0; border-radius: 999px; cursor: pointer; font: 700 14px Manrope, sans-serif; ' + (on ? (dark ? 'background: #FFFFFF; color: #141414' : 'background: #141414; color: #FFFFFF') : 'background: transparent; color: ' + (dark ? '#FFFFFF' : '#141414'));
 const langs = ['RU', 'TR', 'EN'].map((code) => ({ code, on: code === lang, style: pill(code === lang, true), pick: () => this.setState({ lang: code }) }));
-const cities = [{ id: 'msk', label: 'Москва · 4' }, { id: 'rzn', label: 'Рязань · 5' }].map((c) => ({ ...c, on: c.id === city, style: pill(c.id === city, false), pick: () => this.setState({ city: c.id, sel: 0 }) }));
-const n = city === 'msk' ? 4 : 5;
+const cities = [{ id: 'msk', label: 'Москва · 4' }, { id: 'rzn', label: 'Рязань · 1' }].map((c) => ({ ...c, on: c.id === city, style: pill(c.id === city, false), pick: () => this.setState({ city: c.id, sel: 0 }) }));
+const n = city === 'msk' ? 4 : 1;
 const cityName = city === 'msk' ? 'Москва' : 'Рязань';
 const spots = [[22, 30], [58, 22], [70, 48], [36, 52], [80, 28]];
 const points = Array.from({ length: n }, (_, i) => {
