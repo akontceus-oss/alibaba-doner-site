@@ -14,6 +14,8 @@ import { existsSync } from 'node:fs';
 const API = 'https://api-ru.iiko.services';
 const MENU_NAME = process.env.IIKO_MENU_NAME || 'Сайт';
 const FALLBACK_MENU_NAME = 'ЯндексЕда';
+// Служебные группы iiko, которые не показываем на сайте
+const HIDDEN_CATEGORIES = new Set(['Допы', 'Служебные', 'Магазин', 'Яндекс Еда']);
 const mode = process.argv[2] || 'menu';
 
 function apiLogins() {
@@ -63,7 +65,7 @@ function normalize(c, menuName, data) {
   const categories = [];
   const items = [];
   for (const cat of data.itemCategories || []) {
-    if (cat.isHidden) continue;
+    if (cat.isHidden || HIDDEN_CATEGORIES.has(cat.name?.trim())) continue;
     categories.push({ id: cat.id, name: cat.name });
     for (const it of cat.items || []) {
       if (it.isHidden) continue;
