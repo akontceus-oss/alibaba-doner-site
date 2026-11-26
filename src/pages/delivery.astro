@@ -1,0 +1,9 @@
+---
+import Simple from '../components/Simple.astro';
+import { locations } from '../data/site';
+---
+<Simple title="Доставка донера в Москве" h1="Доставка" path="/delivery/" description="Доставка турецкого донера, пиде и лахмаджуна Alibaba Doner по Москве через Яндекс Еду. Выберите ближайшую точку." lead="Доставляем через Яндекс Еду из каждой из четырёх точек. Выберите ближайшую — так еда приедет горячей.">
+  <div class="grid g2" style="margin-top:32px">
+    {locations.map((l) => <div class="card"><span class="metro">{l.metro}</span><h3 style="margin-top:10px">{l.address}</h3><a class="btn btn-eda" href={l.edaUrl} target="_blank" rel="noopener">Заказать отсюда</a></div>)}
+  </div>
+</Simple>

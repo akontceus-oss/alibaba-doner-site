@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import Crumbs from './Crumbs.astro';
+import { crumbsLd } from '../lib';
+interface Props { title: string; h1: string; description: string; path: string; lead?: string; jsonld?: object[]; noindex?: boolean }
+const { title, h1, description, path, lead, jsonld = [], noindex } = Astro.props;
+const c: [string, string][] = [['Главная', '/'], [h1, path]];
+---
+<Base title={title} description={description} noindex={noindex} jsonld={[crumbsLd(c, Astro.site!), ...jsonld]}>
+  <section class="band">
+    <div class="wrap">
+      <Crumbs items={c} />
+      <h1>{h1}</h1>
+      {lead && <p class="lead">{lead}</p>}
+      <slot />
+    </div>
+  </section>
+  <slot name="after" />
+</Base>

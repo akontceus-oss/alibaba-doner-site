@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import { getCollection, render } from 'astro:content';
+import { crumbsLd, fmtDate } from '../../lib';
+import { site } from '../../data/site';
+export async function getStaticPaths() {
+  const list = await getCollection('news', (e) => !e.data.draft);
+  return list.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const url = new URL(`/news/${entry.id}/`, Astro.site).href;
+const c: [string, string][] = [['Главная', '/'], ['Новости', '/news/'], [entry.data.title, `/news/${entry.id}/`]];
+const ld = {
+  '@context': 'https://schema.org', '@type': 'NewsArticle', headline: entry.data.title, description: entry.data.description,
+  datePublished: entry.data.date.toISOString(), mainEntityOfPage: url, inLanguage: 'ru',
+  image: new URL(site.ogImage, Astro.site).href,
+  author: { '@type': 'Organization', name: site.name }, publisher: { '@id': new URL('/#org', Astro.site).href },
+};
+const more = (await getCollection('news', (e) => !e.data.draft && e.id !== entry.id)).slice(0, 3);
+---
+<Base title={entry.data.title} description={entry.data.description} type="article" published={entry.data.date.toISOString()} jsonld={[ld, crumbsLd(c, Astro.site!)]}>
+  <article class="band">
+    <div class="wrap">
+      <Crumbs items={c} />
+      <time class="date" datetime={entry.data.date.toISOString()}>{fmtDate(entry.data.date)}</time>
+      <h1 style="max-width:22ch;margin-top:8px">{entry.data.title}</h1>
+      <p class="lead">{entry.data.description}</p>
+      <div class="prose" style="margin-top:32px"><Content /></div>
+      <div class="btns" style="margin-top:32px"><a class="btn btn-eda" href={site.orderAll} target="_blank" rel="noopener">Заказать в Яндекс Еде</a><a class="btn btn-ghost" href="/locations/">Адреса точек</a></div>
+    </div>
+  </article>
+  {more.length > 0 && <section class="band alt"><div class="wrap"><h2>Читайте также</h2><div class="grid g3">{more.map((n) => <a class="post card" href={`/news/${n.id}/`}><time>{fmtDate(n.data.date)}</time><h3>{n.data.title}</h3></a>)}</div></div></section>}
+</Base>

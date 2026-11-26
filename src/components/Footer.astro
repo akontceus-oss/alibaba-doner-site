@@ -1,0 +1,44 @@
+---
+import Logo from './Logo.astro';
+import { site, locations } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="ftr">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="logo" href="/" aria-label="На главную"><Logo /></a>
+        <p>{site.tagline}. Готовим донер по турецкому рецепту, повара из Турции.</p>
+        <a href={site.telegram} target="_blank" rel="noopener">Telegram-канал</a>
+      </div>
+      <div>
+        <h3>Наши точки</h3>
+        <ul>{locations.map(l => <li><a href={`/locations/${l.slug}/`}>{l.address}</a><br /><span class="small">м. {l.metro}</span></li>)}</ul>
+      </div>
+      <div>
+        <h3>Гостям</h3>
+        <ul>
+          <li><a href="/menu/">Меню и цены</a></li>
+          <li><a href="/delivery/">Доставка</a></li>
+          <li><a href="/catering/">Кейтеринг и мероприятия</a></li>
+          <li><a href="/feedback/">Отзывы и предложения</a></li>
+          <li><a href="/news/">Новости</a></li>
+          <li><a href="/articles/">Статьи о турецкой кухне</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Компания</h3>
+        <ul>
+          <li><a href="/about/">О нас</a></li>
+          <li><a href="/careers/">Работа у нас</a></li>
+          <li><a href="/contacts/">Контакты</a></li>
+          <li><a href="/privacy/">Политика конфиденциальности</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2011–{year} {site.name}. Москва.</span>
+      <span>Цены на сайте носят информационный характер и не являются публичной офертой.</span>
+    </div>
+  </div>
+</footer>

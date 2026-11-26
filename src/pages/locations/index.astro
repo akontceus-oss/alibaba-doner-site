@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import LocationCard from '../../components/LocationCard.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import { locations } from '../../data/site';
+import { restaurantLd, crumbsLd } from '../../lib';
+const c: [string, string][] = [['Главная', '/'], ['Точки', '/locations/']];
+---
+<Base title="Адреса донерных Alibaba Doner в Москве" description="Четыре точки Alibaba Doner в Москве: Ленинский проспект, Аминьевское шоссе, Университет, Селигерская. Адреса, часы работы, доставка." jsonld={[crumbsLd(c, Astro.site!), ...locations.map((l) => restaurantLd(l, Astro.site!))]}>
+  <section class="band">
+    <div class="wrap">
+      <Crumbs items={c} />
+      <h1>Наши точки</h1>
+      <p class="lead">Четыре донерные в разных районах Москвы. Везде одинаковый рецепт, везде можно поесть на месте, взять с собой или заказать доставку.</p>
+      <div class="grid g2" style="margin-top:32px">{locations.map((l, i) => <LocationCard l={l} i={i} />)}</div>
+    </div>
+  </section>
+</Base>

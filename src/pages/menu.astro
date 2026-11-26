@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import Crumbs from '../components/Crumbs.astro';
+import Dish from '../components/Dish.astro';
+import { menu, site } from '../data/site';
+import { crumbsLd } from '../lib';
+const c: [string, string][] = [['Главная', '/'], ['Меню', '/menu/']];
+const menuLd = {
+  '@context': 'https://schema.org', '@type': 'Menu', name: 'Меню Alibaba Doner', inLanguage: 'ru',
+  hasMenuSection: menu.map((g) => ({ '@type': 'MenuSection', name: g.group, hasMenuItem: g.items.map((m) => ({ '@type': 'MenuItem', name: m.name, description: m.desc || undefined, suitableForDiet: 'https://schema.org/HalalDiet', offers: { '@type': 'Offer', price: m.price, priceCurrency: 'RUB' } })) })),
+};
+---
+<Base title="Меню и цены: донер, пиде, лахмаджун, комбо" description="Меню Alibaba Doner с ценами: донер в лаваше и в тарелке, искандер кебаб, пиде, лахмаджун, комбо, супы и айран. Всё халяль." jsonld={[crumbsLd(c, Astro.site!), menuLd]}>
+  <section class="band slate">
+    <div class="wrap">
+      <Crumbs items={c} />
+      <h1>Меню</h1>
+      <p class="lead">Цены меню доставки в Яндекс Еде. В зале цены могут немного отличаться. Всё мясо халяль.</p>
+      <nav class="cats" aria-label="Разделы меню">{menu.map((g) => <a href={`#${g.slug}`}>{g.group}</a>)}</nav>
+      {menu.map((g) => (
+        <section id={g.slug} style="margin-top:48px">
+          <h2 style="font-size:clamp(26px,3vw,36px)">{g.group}</h2>
+          <div class="grid g4">{g.items.map((m) => <Dish m={m} />)}</div>
+        </section>
+      ))}
+      <div class="btns" style="margin-top:48px"><a class="btn btn-eda" href={site.orderAll} target="_blank" rel="noopener">Заказать в Яндекс Еде</a><a class="btn btn-ghost" href="/catering/">Заказ на мероприятие</a></div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import { getCollection } from 'astro:content';
+import { crumbsLd, fmtDate } from '../../lib';
+const list = (await getCollection('news', (e) => !e.data.draft)).sort((a, b) => +b.data.date - +a.data.date);
+const c: [string, string][] = [['Главная', '/'], ['Новости', '/news/']];
+---
+<Base title="Новости" description="Новости сети Alibaba Doner: новые блюда, акции, открытия точек." jsonld={[crumbsLd(c, Astro.site!)]}>
+  <section class="band">
+    <div class="wrap">
+      <Crumbs items={c} />
+      <h1>Новости</h1>
+      <p class="lead">Новости сети Alibaba Doner: новые блюда, акции, открытия точек.</p>
+      <div class="grid g3" style="margin-top:32px">
+        {list.map((n) => <a class="post card" href={`/news/${n.id}/`}><time datetime={n.data.date.toISOString()}>{fmtDate(n.data.date)}</time><h3>{n.data.title}</h3><span class="muted small">{n.data.description}</span></a>)}
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,81 @@
+---
+import '@fontsource/oswald/cyrillic-600.css';
+import '@fontsource/oswald/latin-600.css';
+import '@fontsource/golos-text/cyrillic-400.css';
+import '@fontsource/golos-text/cyrillic-600.css';
+import '@fontsource/golos-text/cyrillic-700.css';
+import '@fontsource/golos-text/latin-400.css';
+import '@fontsource/golos-text/latin-700.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  jsonld?: object[];
+  noindex?: boolean;
+  published?: string;
+}
+const { title, description = site.description, image = site.ogImage, type = 'website', jsonld = [], noindex = false, published } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const fullTitle = title.includes(site.name) ? title : `${title} — ${site.name}`;
+const ogImage = new URL(image, Astro.site).href;
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': new URL('/#org', Astro.site).href,
+  name: site.name,
+  url: Astro.site?.href,
+  logo: new URL('/img/bull.png', Astro.site).href,
+  foundingDate: site.founded,
+  sameAs: [site.telegram],
+};
+---
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex" />}
+  <meta name="theme-color" content="#1b1b1d" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content={site.name} />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  {published && <meta property="article:published_time" content={published} />}
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- TODO: коды верификации Яндекс.Вебмастер / Google Search Console -->
+  <script type="application/ld+json" set:html={JSON.stringify([org, ...jsonld])} />
+</head>
+<body>
+  <a class="skip" href="#main">К содержимому</a>
+  <Header />
+  <main id="main"><slot /></main>
+  <Footer />
+  <div class="mbar">
+    <a class="btn btn-eda" href={site.orderAll} rel="noopener" target="_blank">Заказать в Яндекс Еде</a>
+    <a class="btn btn-red" href="/locations/">Адреса</a>
+  </div>
+  <script is:inline>
+  {
+    const t = document.querySelector('.menu-toggle'), n = document.querySelector('.nav');
+    t?.addEventListener('click', () => { const o = n.classList.toggle('open'); t.setAttribute('aria-expanded', String(o)); });
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+---
+// Фото блюда из public/img/food: две ширины webp.
+interface Props { name: string; alt: string; sizes?: string; eager?: boolean; class?: string }
+const { name, alt, sizes = '(max-width: 700px) 100vw, 400px', eager = false, class: cls } = Astro.props;
+---
+<img class={cls} src={`/img/food/${name}-1200.webp`} srcset={`/img/food/${name}-640.webp 640w, /img/food/${name}-1200.webp 1200w`} sizes={sizes} alt={alt} width="1200" height="900" loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : undefined} />

@@ -1,0 +1,84 @@
+---
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import YandexMap from '../../components/YandexMap.astro';
+import Img from '../../components/Img.astro';
+import Dish from '../../components/Dish.astro';
+import { locations, menu } from '../../data/site';
+import { restaurantLd, crumbsLd, fmtDate } from '../../lib';
+import { getCollection } from 'astro:content';
+export function getStaticPaths() {
+  return locations.map((l, i) => ({ params: { slug: l.slug }, props: { l, i } }));
+}
+const { l } = Astro.props;
+const c: [string, string][] = [['Главная', '/'], ['Точки', '/locations/'], [l.name, `/locations/${l.slug}/`]];
+const others = locations.filter((x) => x.slug !== l.slug);
+const news = (await getCollection('news', (e) => e.data.location === l.slug)).sort((a, b) => +b.data.date - +a.data.date);
+const all = menu.flatMap((g) => g.items);
+const items = l.highlights.map((h) => all.find((m) => m.name === h)!).filter(Boolean);
+---
+<Base title={`${l.title}: адрес, часы работы, доставка`} description={`Alibaba Doner, ${l.address}, м. ${l.metro}. ${l.intro} Работаем ${l.hours[0].days.toLowerCase()} ${l.hours[0].open}–${l.hours[0].close}. Заказ через Яндекс Еду.`} jsonld={[restaurantLd(l, Astro.site!), crumbsLd(c, Astro.site!)]}>
+  <section class="band">
+    <div class="wrap">
+      <Crumbs items={c} />
+      <div class="grid g2" style="align-items:start">
+        <div>
+          <span class="metro">{l.metro}</span>
+          <h1 style="margin-top:12px">{l.title}</h1>
+          <p class="lead">{l.intro}</p>
+          <div class="btns" style="margin:24px 0">
+            <a class="btn btn-eda" href={l.edaUrl} target="_blank" rel="noopener">Заказать в Яндекс Еде</a>
+            <a class="btn btn-ghost" href={`tel:${l.phone.replace(/[^+\d]/g, '')}`}>{l.phone}</a>
+          </div>
+        </div>
+        <div class="ph" style="border-radius:var(--radius);aspect-ratio:4/3"><Img name={l.photo} alt={`Alibaba Doner, ${l.name}`} sizes="(max-width: 700px) 100vw, 600px" eager /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap grid g2" style="align-items:start">
+      <div class="card">
+        <h2 style="font-size:28px">Как нас найти</h2>
+        <dl style="display:grid;grid-template-columns:auto 1fr;gap:12px 20px;margin:0">
+          <dt class="muted">Адрес</dt><dd style="margin:0"><strong>Москва, {l.address}</strong>{l.floor && `, ${l.floor}`}</dd>
+          <dt class="muted">Метро</dt><dd style="margin:0">{l.metro}</dd>
+          <dt class="muted">Дорога</dt><dd style="margin:0">{l.howToGet}</dd>
+          <dt class="muted">Часы</dt><dd style="margin:0">{l.hours.map((h) => <div>{h.days}: {h.open}–{h.close}</div>)}</dd>
+          <dt class="muted">Телефон</dt><dd style="margin:0"><a href={`tel:${l.phone.replace(/[^+\d]/g, '')}`}>{l.phone}</a></dd>
+          <dt class="muted">Средний чек</dt><dd style="margin:0">{l.avgCheck}</dd>
+          <dt class="muted">Обед</dt><dd style="margin:0">{l.lunch}</dd>
+        </dl>
+      </div>
+      <YandexMap orgId={l.yandexOrgId} name={l.address} url={l.yandexUrl} />
+    </div>
+  </section>
+
+  <section class="band slate">
+    <div class="wrap">
+      <div class="head-row"><h2>Советуем попробовать</h2><a class="btn btn-ghost" href="/menu/">Всё меню</a></div>
+      <div class="grid g3">{items.map((m) => <Dish m={m} />)}</div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <h2>Что здесь есть</h2>
+      <div class="cats" style="flex-wrap:wrap">{l.features.map((f) => <span class="card" style="padding:10px 16px;border-radius:var(--pill)">{f}</span>)}</div>
+      <p class="muted" style="margin-top:16px">Всё мясо халяль. Можно поесть на месте, взять с собой или заказать доставку.</p>
+    </div>
+  </section>
+
+  {news.length > 0 && (
+    <section class="band alt"><div class="wrap"><h2>Новости точки</h2>
+      <div class="grid g3">{news.map((n) => <a class="post card" href={`/news/${n.id}/`}><time>{fmtDate(n.data.date)}</time><h3>{n.data.title}</h3></a>)}</div>
+    </div></section>
+  )}
+
+  <section class="band">
+    <div class="wrap">
+      <h2>Другие точки</h2>
+      <div class="grid g3">{others.map((o) => <a class="post card" href={`/locations/${o.slug}/`}><span class="metro">{o.metro}</span><h3>{o.address}</h3></a>)}</div>
+    </div>
+  </section>
+</Base>

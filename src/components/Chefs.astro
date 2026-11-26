@@ -1,0 +1,13 @@
+---
+import { chefs } from '../data/site';
+---
+<div class="grid g4">
+  {chefs.map((c) => (
+    <div class="chef">
+      <div class="ph"><img src="/img/bull.svg" alt="" width="160" height="104" /></div>
+      <h3>{c.role}</h3>
+      <p class="muted small" style="margin:0">{c.where}</p>
+    </div>
+  ))}
+</div>
+<p class="muted small" style="margin-top:16px">Здесь будут фото и имена поваров с парой слов от каждого.</p>

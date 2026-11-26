@@ -1,0 +1,16 @@
+---
+import Img from './Img.astro';
+import type { Location } from '../data/site';
+interface Props { l: Location; i: number }
+const { l } = Astro.props;
+const h = l.hours[0];
+---
+<a class="card loc" href={`/locations/${l.slug}/`}>
+  <div class="ph"><Img name={l.photo} alt={`Alibaba Doner, ${l.name}`} sizes="(max-width: 700px) 100vw, 600px" /><span class="tag">{l.name}</span></div>
+  <div class="body">
+    <span class="metro">{l.metro}</span>
+    <h3>{l.address}{l.floor && <span class="muted" style="font-weight:500">, {l.floor}</span>}</h3>
+    <div class="meta"><span>{h.days} {h.open}–{h.close}</span><span>Средний чек {l.avgCheck}</span></div>
+    <p class="muted small" style="margin:6px 0 0">{l.intro}</p>
+  </div>
+</a>

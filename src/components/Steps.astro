@@ -1,0 +1,13 @@
+---
+import Img from './Img.astro';
+import { steps } from '../data/site';
+---
+<div class="grid g4 steps">
+  {steps.map((s) => (
+    <div class="step">
+      {s.img ? <div class="ph"><Img name={s.img} alt={s.t} /></div> : <div class="ph fill"><img src="/img/bull.svg" alt="" width="160" height="104" /></div>}
+      <h3>{s.t}</h3>
+      <p class="muted" style="margin:0">{s.d}</p>
+    </div>
+  ))}
+</div>

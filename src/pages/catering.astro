@@ -1,0 +1,135 @@
+---
+import Base from '../layouts/Base.astro';
+import Crumbs from '../components/Crumbs.astro';
+import Img from '../components/Img.astro';
+import { cateringFormats, cateringFaq, site, locations } from '../data/site';
+import { crumbsLd } from '../lib';
+const c: [string, string][] = [['Главная', '/'], ['Кейтеринг', '/catering/']];
+const base = Astro.site!;
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Кейтеринг',
+  name: 'Кейтеринг Alibaba Doner: турецкая кухня и халяль на мероприятие',
+  description: 'Кейтеринг в Москве: донер, пиде, лахмаджун и фуршет из турецкой кухни. Обеды в офис, корпоративы, дни рождения, донер-станция с поваром. Всё халяль.',
+  provider: { '@id': new URL('/#org', base).href },
+  areaServed: { '@type': 'City', name: 'Москва' },
+  url: new URL('/catering/', base).href,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog', name: 'Форматы кейтеринга',
+    itemListElement: cateringFormats.map((f) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: f.t, description: f.d } })),
+  },
+};
+const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: cateringFaq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+const endpoint = '/api/catering'; // TODO: приёмник заявок (Telegram-бот / почта)
+---
+<Base
+  title="Кейтеринг в Москве: турецкая кухня и халяль на мероприятие"
+  description="Закажите кейтеринг Alibaba Doner в Москве: донер, пиде, лахмаджун и халяль-фуршет на корпоратив, день рождения или обед в офис. Донер-станция с поваром. Смета в день заявки."
+  jsonld={[crumbsLd(c, base), serviceLd, faqLd]}
+>
+  <section class="hero" style="min-height:min(78vh,720px)">
+    <Img class="poster" name="pide-trio" alt="" sizes="100vw" eager />
+    <div class="wrap">
+      <Crumbs items={c} />
+      <span class="badge">Всё халяль · доставка по Москве</span>
+      <h1 style="max-width:16ch">Кейтеринг в Москве: турецкий донер и пиде на ваше мероприятие</h1>
+      <p class="lead">Корпоративы, обеды в офис, фуршеты и дни рождения. Готовят наши повара из Турции, привозим горячим из ближайшей точки.</p>
+      <div class="btns"><a class="btn btn-red" href="#zayavka">Получить смету</a><a class="btn btn-ghost" style="color:#fff" href="#formaty">Форматы</a></div>
+    </div>
+  </section>
+
+  <section class="band" id="formaty">
+    <div class="wrap">
+      <span class="kicker">Форматы</span>
+      <h2>Что мы привезём</h2>
+      <div class="grid g4" style="margin-top:24px">
+        {cateringFormats.map((f) => (
+          <article class="dish">
+            <div class="ph"><Img name={f.img} alt={f.t} /></div>
+            <div class="b" style="grid-template-columns:1fr"><h3>{f.t}</h3><span class="d">{f.d}</span></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap grid g2" style="align-items:start">
+      <div class="prose">
+        <h2 style="margin-top:0">Почему турецкий кейтеринг — хорошая идея</h2>
+        <p>Донер, пиде и лахмаджун удобно есть стоя и руками, поэтому они идеально подходят для фуршета. Это сытная еда: гости не уходят голодными, как после канапе.</p>
+        <p>Всё мясо у нас халяль. Можно спокойно звать гостей, для которых это важно, и не собирать отдельное меню.</p>
+        <p>Мы готовим в одной из четырёх своих точек в Москве — <a href="/locations/">на Ленинском проспекте, Аминьевском шоссе, Вернадского и Селигерской</a> — и везём из ближайшей. Еда приезжает горячей.</p>
+        <h3>Что входит в заказ</h3>
+        <ul>
+          <li>Меню под количество гостей и бюджет.</li>
+          <li>Упаковка порциями или подача на досках для фуршета.</li>
+          <li>Соусы, салфетки, приборы при необходимости.</li>
+          <li>Доставка к нужному времени.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Как заказать</h3>
+        <ol class="muted" style="padding-left:20px;display:grid;gap:10px;margin:0 0 20px">
+          <li>Оставьте заявку: дата, количество гостей, формат.</li>
+          <li>В тот же день пришлём меню и смету.</li>
+          <li>Согласуем детали и время доставки.</li>
+          <li>Привозим и, если нужно, накрываем.</li>
+        </ol>
+        <a class="btn btn-red" href="#zayavka">Оставить заявку</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band slate" id="zayavka">
+    <div class="wrap grid g2" style="align-items:start">
+      <div>
+        <h2>Заявка на кейтеринг</h2>
+        <p class="lead">Ответим в течение рабочего дня и пришлём смету.</p>
+        <p class="muted">Или позвоните в любую точку: {locations[0].phone}</p>
+      </div>
+      <form class="form card" action={endpoint} method="post" id="cat">
+        <div class="row">
+          <label>Формат
+            <select name="format">{cateringFormats.map((f) => <option>{f.t}</option>)}<option>Другое</option></select>
+          </label>
+          <label>Дата<input type="date" name="date" required /></label>
+        </div>
+        <div class="row">
+          <label>Гостей<input type="number" name="guests" min="5" inputmode="numeric" required placeholder="например, 30" /></label>
+          <label>Адрес или район<input name="address" placeholder="Москва, …" /></label>
+        </div>
+        <div class="row">
+          <label>Имя<input name="name" autocomplete="name" required /></label>
+          <label>Телефон<input name="phone" type="tel" autocomplete="tel" required /></label>
+        </div>
+        <label>Комментарий<textarea name="comment" placeholder="Пожелания по меню, бюджет на гостя"></textarea></label>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+        <label class="check"><input type="checkbox" name="agree" required /> <span>Согласен на обработку персональных данных по <a href="/privacy/">политике конфиденциальности</a></span></label>
+        <button class="btn btn-red" type="submit">Отправить заявку</button>
+        <div class="ok" role="status">Спасибо! Заявка получена, перезвоним в течение рабочего дня.</div>
+      </form>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap" style="max-width:860px">
+      <h2>Вопросы о кейтеринге</h2>
+      {cateringFaq.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+    </div>
+  </section>
+
+  <script is:inline>
+  {
+    const f = document.getElementById('cat');
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (f.website.value) return;
+      const b = f.querySelector('button'); b.disabled = true;
+      try { await fetch(f.action, { method: 'POST', body: new FormData(f) }); } catch (err) {}
+      f.classList.add('sent'); b.hidden = true;
+    });
+  }
+  </script>
+</Base>

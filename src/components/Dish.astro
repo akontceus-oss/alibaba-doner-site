@@ -1,0 +1,14 @@
+---
+import Img from './Img.astro';
+import type { MenuItem } from '../data/site';
+interface Props { m: MenuItem }
+const { m } = Astro.props;
+---
+<article class={`dish${m.img ? '' : ' noimg'}`}>
+  {m.img && <div class="ph"><Img name={m.img} alt={m.name} /></div>}
+  <div class="b">
+    <h3>{m.name}</h3><span class="price">{m.price} ₽</span>
+    {m.weight && <span class="w">{m.weight}</span>}
+    {m.desc && <span class="d">{m.desc}</span>}
+  </div>
+</article>
