@@ -1,0 +1,17 @@
+---
+import Simple from '../components/Simple.astro';
+import Steps from '../components/Steps.astro';
+import Chefs from '../components/Chefs.astro';
+import { advantages, stats } from '../data/site';
+---
+<Simple title="О сети Alibaba Doner" h1="О нас" path="/about/" description="История Alibaba Doner: турецкий донер в Москве с 2011 года, повара из Турции, своя пекарня, всё халяль." lead="Alibaba Doner открылся в Москве в 2011 году. Мы хотели, чтобы здесь можно было съесть донер, как в Стамбуле: из цельного мяса, в свежем хлебе, приготовленный турецкими поварами.">
+  <div class="prose" style="margin-top:24px">
+    <p>За 15 лет мы выросли до четырёх точек, но рецепт не меняли. Вертел собираем каждый день, хлеб печём сами, на кухне работают повара из Турции. Всё мясо халяль.</p>
+    <p class="muted small">Сюда просится настоящая история основателя: с чего началось, кто шеф, откуда рецепты.</p>
+  </div>
+  <div class="stats" style="margin:40px 0">{stats.map((s) => <div class="stat"><b>{s.v}</b><span>{s.l}</span></div>)}</div>
+  <h2>Наши принципы</h2>
+  <div class="grid g3">{advantages.map((a) => <div class="card adv"><h3>{a.k}</h3><p class="muted" style="margin:0">{a.t}</p></div>)}</div>
+  <section slot="after" class="band alt"><div class="wrap"><h2>Как мы готовим</h2><Steps /></div></section>
+  <section slot="after" class="band slate"><div class="wrap"><h2>Наши повара</h2><Chefs /></div></section>
+</Simple>

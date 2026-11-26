@@ -1,0 +1,100 @@
+---
+import '@fontsource/oswald/cyrillic-600.css';
+import '@fontsource/oswald/latin-600.css';
+import '@fontsource/golos-text/cyrillic-400.css';
+import '@fontsource/golos-text/cyrillic-600.css';
+import '@fontsource/golos-text/cyrillic-700.css';
+import '@fontsource/golos-text/latin-400.css';
+import '@fontsource/golos-text/latin-700.css';
+import '@fontsource/yeseva-one/cyrillic-400.css';
+import '@fontsource/yeseva-one/latin-400.css';
+import '@fontsource/inter-tight/cyrillic-400.css';
+import '@fontsource/inter-tight/cyrillic-700.css';
+import '@fontsource/inter-tight/cyrillic-800.css';
+import '@fontsource/inter-tight/latin-800.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  jsonld?: object[];
+  noindex?: boolean;
+  published?: string;
+}
+const { title, description = site.description, image = site.ogImage, type = 'website', jsonld = [], noindex = false, published } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const fullTitle = title.includes(site.name) ? title : `${title} — ${site.name}`;
+const ogImage = new URL(image, Astro.site).href;
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': new URL('/#org', Astro.site).href,
+  name: site.name,
+  url: Astro.site?.href,
+  logo: new URL('/img/bull.png', Astro.site).href,
+  foundingDate: site.founded,
+  sameAs: [site.telegram],
+};
+---
+<!doctype html>
+<html lang="ru" data-style="board">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex" />}
+  <meta name="theme-color" content="#1b1b1d" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content={site.name} />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  {published && <meta property="article:published_time" content={published} />}
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- TODO: коды верификации Яндекс.Вебмастер / Google Search Console -->
+  <script type="application/ld+json" set:html={JSON.stringify([org, ...jsonld])} />
+  <script is:inline>try{const s=localStorage.getItem('ab-style2');if(s)document.documentElement.dataset.style=s}catch(e){}</script>
+</head>
+<body>
+  <a class="skip" href="#main">К содержимому</a>
+  <Header />
+  <main id="main"><slot /></main>
+  <Footer />
+  <div class="mbar">
+    <a class="btn btn-eda" href={site.orderAll} rel="noopener" target="_blank">Заказать в Яндекс Еде</a>
+    <a class="btn btn-red" href="/locations/">Адреса</a>
+  </div>
+  <!-- Превью-переключатель направлений. Удалить после выбора стиля. -->
+  <div class="styler" role="group" aria-label="Стиль сайта">
+    <b>Направление стиля</b>
+    <button type="button" data-s="board">A · Меню-борд<small>Oswald + Golos, графит</small></button>
+    <button type="button" data-s="heritage">B · Наследие<small>Yeseva One + Golos, тёплый светлый</small></button>
+    <button type="button" data-s="minimal">C · Минимал<small>Inter Tight, чёрный</small></button>
+  </div>
+  <script is:inline>
+  {
+    const root = document.documentElement;
+    const btns = document.querySelectorAll('.styler button');
+    const mark = () => btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.s === root.dataset.style)));
+    btns.forEach(b => b.addEventListener('click', () => { root.dataset.style = b.dataset.s; try { localStorage.setItem('ab-style2', b.dataset.s) } catch (e) {} mark(); }));
+    mark();
+    const t = document.querySelector('.menu-toggle'), n = document.querySelector('.nav');
+    t?.addEventListener('click', () => { const o = n.classList.toggle('open'); t.setAttribute('aria-expanded', String(o)); });
+  }
+  </script>
+</body>
+</html>

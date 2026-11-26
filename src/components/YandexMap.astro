@@ -1,0 +1,27 @@
+---
+// Карта грузится по клику: Яндекс-виджет тяжёлый (≈1 МБ), так страница остаётся быстрой.
+interface Props { orgId: string; name: string; url: string }
+const { orgId, name, url } = Astro.props;
+const src = `https://yandex.ru/map-widget/v1/?oid=${orgId}&ol=biz&z=16`;
+---
+<div class="map" data-src={src}>
+  <div class="facade">
+    <div>
+      <p><strong>{name}</strong> на Яндекс Картах</p>
+      <div class="btns" style="justify-content:center">
+        <button type="button" class="btn btn-red js-map">Показать карту</button>
+        <a class="btn btn-ghost" href={url} target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script is:inline>
+{
+  document.querySelectorAll('.js-map').forEach(b => b.addEventListener('click', () => {
+    const m = b.closest('.map');
+    const f = document.createElement('iframe');
+    f.src = m.dataset.src; f.title = 'Карта'; f.loading = 'lazy'; f.allowFullscreen = true;
+    m.replaceChildren(f);
+  }, { once: true }));
+}
+</script>

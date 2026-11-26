@@ -1,0 +1,26 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../data/site';
+const path = Astro.url.pathname;
+const links = [
+  ['/locations/', 'Точки'],
+  ['/menu/', 'Меню'],
+  ['/catering/', 'Кейтеринг'],
+  ['/about/', 'О нас'],
+  ['/news/', 'Новости'],
+  ['/feedback/', 'Отзывы'],
+  ['/contacts/', 'Контакты'],
+];
+---
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Alibaba Doner — на главную"><Logo /></a>
+    <button class="menu-toggle" aria-label="Меню" aria-expanded="false" aria-controls="nav">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 7h20M3 13h20M3 19h20"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Основное меню">
+      {links.map(([href, label]) => <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{label}</a>)}
+    </nav>
+    <a class="btn btn-red btn-order" href={site.orderAll} target="_blank" rel="noopener">Заказать</a>
+  </div>
+</header>

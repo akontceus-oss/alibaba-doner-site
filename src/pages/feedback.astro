@@ -1,0 +1,61 @@
+---
+import Simple from '../components/Simple.astro';
+import { locations } from '../data/site';
+// TODO: адрес приёма формы. Варианты: Telegram-бот генерального директора, почта, CRM.
+const endpoint = '/api/feedback';
+---
+<Simple title="Отзывы и предложения" h1="Отзывы и предложения" path="/feedback/" description="Напишите руководству Alibaba Doner напрямую. Каждый отзыв и предложение читает генеральный директор сети." lead="Нам важно знать, что вам понравилось и что нужно исправить. Пишите честно: так мы становимся лучше.">
+  <div class="grid g2" style="margin-top:32px;align-items:start">
+    <form class="form card" action={endpoint} method="post" id="fb">
+      <div class="row">
+        <label>Тип сообщения
+          <select name="type" required>
+            <option>Отзыв</option><option>Предложение</option><option>Жалоба</option><option>Благодарность</option><option>Сотрудничество</option>
+          </select>
+        </label>
+        <label>Точка
+          <select name="location">
+            <option value="">Не важно / доставка</option>
+            {locations.map((l) => <option value={l.slug}>{l.name} — {l.address}</option>)}
+          </select>
+        </label>
+      </div>
+      <label>Сообщение<textarea name="message" required minlength="10" placeholder="Расскажите, что произошло, когда и что можно сделать лучше"></textarea></label>
+      <div class="row">
+        <label>Имя<input name="name" autocomplete="name" /></label>
+        <label>Телефон или e-mail для ответа<input name="contact" autocomplete="email" /></label>
+      </div>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+      <label class="check"><input type="checkbox" name="agree" required /> <span>Согласен на обработку персональных данных по <a href="/privacy/">политике конфиденциальности</a></span></label>
+      <button class="btn btn-red" type="submit">Отправить</button>
+      <div class="ok" role="status">Спасибо! Сообщение получено. Если вы оставили контакт, ответим в течение 2 рабочих дней.</div>
+    </form>
+    <div class="grid" style="gap:20px">
+      <div class="ceo">
+        <div class="ava"><img src="/img/bull.svg" alt="" width="52" height="34" /></div>
+        <div><strong>Читает генеральный директор</strong><br /><span class="muted small">Сообщения приходят лично руководителю сети, без посредников. Мы разбираем каждую жалобу и отвечаем, если вы оставили контакт.</span></div>
+      </div>
+      <div class="card">
+        <h3>Что происходит после отправки</h3>
+        <ol class="muted" style="padding-left:20px;margin:0;display:grid;gap:8px">
+          <li>Сообщение сразу приходит директору.</li>
+          <li>По жалобе разбираемся с управляющим точки.</li>
+          <li>Отвечаем вам в течение 2 рабочих дней.</li>
+        </ol>
+      </div>
+      <p class="muted small">Можно оставить отзыв и на Яндекс Картах — на странице нужной точки есть ссылка.</p>
+    </div>
+  </div>
+  <script is:inline>
+  {
+    const f = document.getElementById('fb');
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (f.website.value) return;
+      const btn = f.querySelector('button'); btn.disabled = true;
+      try { await fetch(f.action, { method: 'POST', body: new FormData(f) }); } catch (err) {}
+      f.classList.add('sent'); btn.hidden = true;
+    });
+  }
+  </script>
+</Simple>

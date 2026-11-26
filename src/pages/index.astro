@@ -1,0 +1,162 @@
+---
+import Base from '../layouts/Base.astro';
+import LocationCard from '../components/LocationCard.astro';
+import Dish from '../components/Dish.astro';
+import Img from '../components/Img.astro';
+import Steps from '../components/Steps.astro';
+import Chefs from '../components/Chefs.astro';
+import { site, locations, advantages, doenerVsShawarma, stats, menu, faq } from '../data/site';
+import { restaurantLd, fmtDate } from '../lib';
+import { getCollection } from 'astro:content';
+
+const news = (await getCollection('news', (e) => !e.data.draft)).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
+const articles = (await getCollection('articles', (e) => !e.data.draft)).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
+const base = Astro.site!;
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+const icons = [
+  'M12 3a5 5 0 0 1 5 5v1h1a3 3 0 0 1 0 6h-1.2A6 6 0 0 1 7.2 15H6a3 3 0 0 1 0-6h1V8a5 5 0 0 1 5-5Z',
+  'M5 4h14v4H5zM7 8v12h10V8M10 12h4M10 16h4',
+  'M12 3c-4 4-6 7-6 10a6 6 0 0 0 12 0c0-3-2-6-6-10Z',
+  'M4 14c0-5 4-8 8-8s8 3 8 8H4ZM3 17h18M6 20h12',
+  'M3 21 21 3M14 3h7v7',
+  'M12 7v5l3 3M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z',
+];
+const all = menu.flatMap((g) => g.items);
+const pick = ['Донер в лаваше', 'Сэндвич донер', 'Искандер кебаб', 'Пиде кыймалы', 'Лахмаджун классик', 'Комбо донер', 'Донер в тарелке', 'Чечевичный суп'];
+const highlights = pick.map((n) => all.find((m) => m.name === n)!).filter(Boolean);
+---
+<Base
+  title="Alibaba Doner — турецкий донер в Москве, 4 точки, халяль"
+  description={site.description}
+  jsonld={[...locations.map((l) => restaurantLd(l, base)), faqLd]}
+>
+  <section class="hero">
+    <Img class="poster" name="sendvich-doner" alt="" sizes="100vw" eager />
+    <!-- Видео: положить hero.mp4 / hero.webm в /public/video/. Пока файлов нет, видно фото. -->
+    <video autoplay muted loop playsinline preload="none" aria-hidden="true">
+      <source src="/video/hero.webm" type="video/webm" />
+      <source src="/video/hero.mp4" type="video/mp4" onerror="this.parentNode.remove()" />
+    </video>
+    <div class="wrap">
+      <span class="badge">С 2011 года · всё халяль</span>
+      <h1>Турецкий донер, а&nbsp;не шаурма</h1>
+      <p class="lead">Говядина и баранина с вертела, хлеб из своей пекарни, повара из Турции. Четыре донерные в Москве и доставка через Яндекс Еду.</p>
+      <div class="btns">
+        <a class="btn btn-eda" href={site.orderAll} target="_blank" rel="noopener">Заказать в Яндекс Еде</a>
+        <a class="btn btn-ghost" href="#tochki" style="color:#fff">Выбрать точку</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" aria-label="Цифры">
+    <div class="wrap stats">{stats.map((s) => <div class="stat"><b>{s.v}</b><span>{s.l}</span></div>)}</div>
+  </section>
+
+  <section class="band" id="tochki">
+    <div class="wrap">
+      <div class="head-row"><h2>Четыре донерные в Москве</h2><a class="btn btn-ghost" href="/locations/">Все адреса</a></div>
+      <div class="grid g2">{locations.map((l, i) => <LocationCard l={l} i={i} />)}</div>
+    </div>
+  </section>
+
+  <section class="band slate" id="menu">
+    <div class="wrap">
+      <div class="head-row"><div><span class="kicker">Меню</span><h2 style="margin:0">Что попробовать</h2></div><a class="btn btn-ghost" href="/menu/">Всё меню</a></div>
+      <div class="grid g4">{highlights.map((m) => <Dish m={m} />)}</div>
+    </div>
+  </section>
+
+  <section class="band" id="pochemu">
+    <div class="wrap">
+      <span class="kicker">Почему мы</span>
+      <h2>Настоящий турецкий донер</h2>
+      <p class="lead">Готовим по турецкой технологии с 2011 года. Вот что это значит на деле.</p>
+      <div class="grid g3" style="margin-top:32px">
+        {advantages.map((a, i) => (
+          <div class="card adv">
+            <span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={icons[i]} /></svg></span>
+            <h3>{a.k}</h3>
+            <p class="muted" style="margin:0">{a.t}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="kak-gotovim">
+    <div class="wrap">
+      <span class="kicker">Как мы готовим</span>
+      <h2>Четыре шага до вашего донера</h2>
+      <Steps />
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <span class="kicker">Сравнение</span>
+      <h2>Донер и шаурма: в чём разница</h2>
+      <table class="tbl stack">
+        <thead><tr><th></th><th class="us">Донер в Alibaba</th><th>Обычная шаурма</th></tr></thead>
+        <tbody>{doenerVsShawarma.map(([k, a, b]) => <tr><td data-l="">{k}</td><td data-l="Донер">{a}</td><td class="muted" data-l="Шаурма">{b}</td></tr>)}</tbody>
+      </table>
+      <p style="margin-top:20px"><a href="/articles/chem-doner-otlichaetsya-ot-shaurmy/">Подробнее в статье →</a></p>
+    </div>
+  </section>
+
+  <section class="band slate" id="povara">
+    <div class="wrap">
+      <div class="head-row"><div><span class="kicker">Команда</span><h2>Наши повара из Турции</h2><p class="lead" style="margin:0">У вертела стоят люди, которые выросли на этой еде.</p></div><a class="btn btn-ghost" href="/about/">О нас</a></div>
+      <Chefs />
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap grid g2" style="align-items:center">
+      <div class="ph" style="border-radius:var(--radius)"><Img name="pide-trio" alt="Пиде трио на деревянной доске" sizes="(max-width: 700px) 100vw, 600px" /></div>
+      <div>
+        <span class="kicker">Кейтеринг</span>
+        <h2>Донер и пиде на ваше мероприятие</h2>
+        <p class="lead">Обеды в офис, фуршеты, дни рождения и донер-станция с поваром. Всё халяль, доставка по Москве.</p>
+        <a class="btn btn-red" href="/catering/">Рассчитать кейтеринг</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap grid g2" style="align-items:center">
+      <div>
+        <h2>Напишите руководству напрямую</h2>
+        <p class="lead">Понравилось, не понравилось, есть идея — расскажите. Каждое сообщение читает генеральный директор сети.</p>
+        <a class="btn btn-red" href="/feedback/">Оставить отзыв или предложение</a>
+      </div>
+      <div class="ceo">
+        <div class="ava"><img src="/img/bull.svg" alt="" width="52" height="34" /></div>
+        <div><strong>Отвечаем лично</strong><br /><span class="muted small">Если оставите контакт, ответим в течение 2 рабочих дней.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap grid g2">
+      <div>
+        <div class="head-row"><h2>Новости</h2><a href="/news/">Все новости →</a></div>
+        <div class="grid">{news.map((n) => <a class="post card" href={`/news/${n.id}/`}><time datetime={n.data.date.toISOString()}>{fmtDate(n.data.date)}</time><h3>{n.data.title}</h3></a>)}</div>
+      </div>
+      <div>
+        <div class="head-row"><h2>Статьи</h2><a href="/articles/">Все статьи →</a></div>
+        <div class="grid">{articles.map((n) => <a class="post card" href={`/articles/${n.id}/`}><h3>{n.data.title}</h3><span class="muted small">{n.data.description}</span></a>)}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap" style="max-width:860px">
+      <h2>Частые вопросы</h2>
+      {faq.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+    </div>
+  </section>
+</Base>

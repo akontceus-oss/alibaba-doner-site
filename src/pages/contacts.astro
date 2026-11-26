@@ -1,0 +1,15 @@
+---
+import Simple from '../components/Simple.astro';
+import { locations, site } from '../data/site';
+---
+<Simple title="Контакты" h1="Контакты" path="/contacts/" description="Телефоны и адреса всех точек Alibaba Doner в Москве, Telegram, почта для сотрудничества." lead="Звоните в нужную точку напрямую. По вопросам сотрудничества и аренды пишите на почту.">
+  <table class="tbl stack" style="margin-top:24px">
+    <thead><tr><th>Точка</th><th>Адрес</th><th>Телефон</th><th>Часы</th></tr></thead>
+    <tbody>{locations.map((l) => <tr><td data-l="Точка"><a href={`/locations/${l.slug}/`}>{l.name}</a></td><td data-l="Адрес">{l.address}{l.floor && `, ${l.floor}`}</td><td data-l="Телефон" style="white-space:nowrap"><a href={`tel:${l.phone.replace(/[^+\d]/g, '')}`}>{l.phone}</a></td><td data-l="Часы" style="white-space:nowrap">{l.hours[0].open}–{l.hours[0].close}</td></tr>)}</tbody>
+  </table>
+  <div class="grid g3" style="margin-top:40px">
+    <div class="card"><h3>Сотрудничество</h3><p class="muted">{site.email}</p></div>
+    <div class="card"><h3>Telegram</h3><p><a href={site.telegram} target="_blank" rel="noopener">t.me/alibabadoner2011</a></p></div>
+    <div class="card"><h3>Отзывы</h3><p><a href="/feedback/">Написать руководству</a></p></div>
+  </div>
+</Simple>
