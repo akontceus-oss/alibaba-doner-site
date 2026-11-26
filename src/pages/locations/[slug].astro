@@ -54,6 +54,15 @@ const items = l.highlights.map((h) => all.find((m) => m.name === h)!).filter(Boo
     </div>
   </section>
 
+  {l.gallery && (
+    <section class="band">
+      <div class="wrap">
+        <h2>Фото точки</h2>
+        <div class="grid g3 gallery">{l.gallery.map((g) => <div class="ph"><Img name={g} alt={`Alibaba Doner, ${l.name}: зал и кухня`} sizes="(max-width: 700px) 100vw, 400px" /></div>)}</div>
+      </div>
+    </section>
+  )}
+
   <section class="band slate">
     <div class="wrap">
       <div class="head-row"><h2>Советуем попробовать</h2><a class="btn btn-ghost" href="/menu/">Всё меню</a></div>
