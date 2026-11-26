@@ -1,7 +1,4 @@
 // Общие данные сети. Всё, что помечено TODO, нужно подтвердить у владельца.
-// Поиск бренда в Яндекс Еде. Прямых ссылок на точки в открытом доступе нет.
-const EDA = 'https://eda.yandex.ru/moscow?shippingType=delivery&searchQuery=Alibaba%20Doner';
-
 export const site = {
   name: 'Alibaba Doner',
   legalName: 'Alibaba Doner', // TODO: юрлицо / ИП и ИНН для политики и футера
@@ -12,7 +9,7 @@ export const site = {
   city: 'Москва',
   email: 'info@alibaba-doner.ru', // TODO: подтвердить почту
   telegram: 'https://t.me/alibabadoner2011',
-  orderAll: 'https://eda.yandex.ru/moscow?shippingType=delivery&searchQuery=Alibaba%20Doner',
+  orderAll: 'https://eda.yandex.ru/r/alibaba_doner',
   ogImage: '/img/og.png',
 };
 
@@ -59,7 +56,7 @@ export const locations: Location[] = [
     phone: '+7 916 236-60-66',
     yandexOrgId: '2688126443',
     yandexUrl: 'https://yandex.ru/maps/org/alibaba_doner/2688126443/',
-    edaUrl: EDA, // TODO: заменить прямой ссылкой на точку из кабинета Яндекс Еды
+    edaUrl: 'https://eda.yandex.ru/r/alibaba_doner?placeSlug=alibaba_qsb8r',
     hours: defaultHours,
     avgCheck: '300–500 ₽',
     lunch: 'Бизнес-ланч 450 ₽',
@@ -82,7 +79,7 @@ export const locations: Location[] = [
     phone: '+7 985 032-00-55',
     yandexOrgId: '37053339663',
     yandexUrl: 'https://yandex.ru/maps/org/alibaba_doner/37053339663/',
-    edaUrl: EDA, // TODO: заменить прямой ссылкой на точку из кабинета Яндекс Еды
+    edaUrl: 'https://eda.yandex.ru/r/alibaba_doner?placeSlug=alibaba_doner',
     hours: defaultHours,
     avgCheck: '300–700 ₽',
     lunch: 'Бизнес-ланч от 448 ₽',
@@ -105,7 +102,7 @@ export const locations: Location[] = [
     phone: '+7 925 013-44-55',
     yandexOrgId: '208542412187',
     yandexUrl: 'https://yandex.ru/maps/org/alibaba_doneri/208542412187/',
-    edaUrl: EDA, // TODO: заменить прямой ссылкой на точку из кабинета Яндекс Еды
+    edaUrl: 'https://eda.yandex.ru/moscow/r/alibaba_doneri_restaurant',
     hours: defaultHours,
     avgCheck: '500–800 ₽',
     lunch: 'Бизнес-ланч 450 ₽',
@@ -128,7 +125,7 @@ export const locations: Location[] = [
     phone: '+7 925 123-88-99',
     yandexOrgId: '146689997631',
     yandexUrl: 'https://yandex.ru/maps/org/alibaba_doneri/146689997631/',
-    edaUrl: EDA, // TODO: заменить прямой ссылкой на точку из кабинета Яндекс Еды
+    edaUrl: 'https://eda.yandex.ru/r/alibaba_doner?placeSlug=alibaba_pj4qf',
     hours: defaultHours,
     avgCheck: '300–500 ₽',
     lunch: 'Бизнес-ланч 450 ₽',
