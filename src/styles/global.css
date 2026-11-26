@@ -2,7 +2,7 @@
 VOICE: уверенная турецкая донерная: еда крупно, текст коротко
 IDEA: фото блюд на тёмном сланце — те же, что в Яндекс Еде; сайт продолжает эту съёмку
 PICTURE: первый экран — донер во весь экран, дальше фото блюд в карточках меню и точек
-COLOUR/TYPE: три направления (data-style): board — Oswald + Golos Text на графите; heritage — Yeseva One + Golos Text на тёплой бумаге; minimal — Inter Tight на чёрном
+COLOUR/TYPE: Oswald (заголовки капсом) + Golos Text на графите, фирменный красный
 LAYOUT: полноширинные полосы, сетка 1240px, на телефоне одна колонка и панель заказа внизу
 */
 :root {
@@ -22,40 +22,6 @@ LAYOUT: полноширинные полосы, сетка 1240px, на тел�
   --radius: 6px;
   --pill: 6px;
   color-scheme: dark;
-}
-/* B · Наследие */
-:root[data-style='heritage'] {
-  --red: #a3161c;
-  --red-ink: #a3161c;
-  --bg: #f3ede4;
-  --bg2: #e9e0d3;
-  --card: #fbf8f3;
-  --ink: #221b18;
-  --muted: #6e625a;
-  --line: #d8cbb9;
-  --head: 'Yeseva One', Georgia, serif;
-  --hw: 400;
-  --ht: none;
-  --hls: 0;
-  --radius: 2px;
-  --pill: 999px;
-  color-scheme: light;
-}
-/* C · Минимал */
-:root[data-style='minimal'] {
-  --bg: #0a0a0a;
-  --bg2: #141414;
-  --card: #141414;
-  --ink: #ffffff;
-  --muted: #9a9a9a;
-  --line: #262626;
-  --head: 'Inter Tight', system-ui, sans-serif;
-  --body: 'Inter Tight', system-ui, sans-serif;
-  --hw: 800;
-  --ht: none;
-  --hls: -0.035em;
-  --radius: 22px;
-  --pill: 999px;
 }
 
 *, *::before, *::after { box-sizing: border-box; min-width: 0; }
@@ -114,7 +80,6 @@ p { margin: 0 0 1em; }
 .hero::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(12,12,13,.9) 0%, rgba(12,12,13,.55) 45%, rgba(12,12,13,0) 75%), linear-gradient(0deg, rgba(12,12,13,.75), rgba(12,12,13,0) 40%); }
 .hero .wrap { padding-block: 140px clamp(44px, 7vw, 96px); }
 .hero h1 { font-size: clamp(42px, 7vw, 96px); max-width: 12ch; }
-:root[data-style='heritage'] .hero h1 { max-width: 14ch; }
 .hero .lead { color: #e6e1db; }
 .badge { display: inline-flex; gap: 8px; align-items: center; background: var(--red); color: #fff; padding: 6px 14px; border-radius: var(--pill); font-weight: 700; font-size: 14px; margin-bottom: 20px; }
 @media (max-width: 700px) {
@@ -127,9 +92,8 @@ p { margin: 0 0 1em; }
 .grid { display: grid; gap: clamp(16px, 2vw, 24px); }
 .g2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); }
 .g3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
-.g4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.g4 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
 .card { background: var(--card); border-radius: var(--radius); padding: clamp(20px, 2.4vw, 32px); border: 1px solid var(--line); }
-:root[data-style='minimal'] .card { border-color: transparent; }
 .head-row { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: clamp(24px, 3vw, 40px); }
 .head-row h2 { margin: 0; }
 .ph { aspect-ratio: 4 / 3; overflow: hidden; background: #1b1b1d; }
@@ -149,11 +113,10 @@ a:hover .ph img { transform: scale(1.04); }
 
 /* блюда */
 .dish { display: grid; grid-template-rows: auto 1fr; background: var(--card); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
-:root[data-style='minimal'] .dish { border-color: transparent; }
 .dish .b { padding: 16px 18px 18px; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-content: start; }
 .dish h3 { font: 700 17px/1.3 var(--body); text-transform: none; letter-spacing: 0; margin: 0; }
 .dish .price { font-weight: 800; white-space: nowrap; color: var(--red-ink); }
-:root:not([data-style]) .dish .price, :root[data-style='board'] .dish .price { color: #fff; background: var(--red); padding: 2px 8px; border-radius: 4px; align-self: start; }
+.dish .price { color: #fff; background: var(--red); padding: 2px 8px; border-radius: 4px; align-self: start; }
 .dish .d { grid-column: 1 / -1; color: var(--muted); font-size: 14px; line-height: 1.45; }
 .dish .w { grid-column: 1 / -1; color: var(--muted); font-size: 13px; }
 .dish.noimg { grid-template-rows: 1fr; }
@@ -261,13 +224,4 @@ details p { color: var(--muted); }
   body { padding-bottom: 76px; }
 }
 
-/* превью-переключатель стилей (удалить после выбора) */
-.styler { position: fixed; right: 16px; bottom: 16px; z-index: 70; background: #111; color: #fff; border-radius: 16px; padding: 10px; display: grid; gap: 6px; box-shadow: 0 10px 30px rgba(0,0,0,.45); font: 600 13px/1.2 system-ui, sans-serif; width: 230px; }
-.styler b { padding: 2px 6px 4px; color: #bbb; font-weight: 600; }
-.styler button { all: unset; cursor: pointer; padding: 10px; border-radius: 10px; display: grid; gap: 2px; }
-.styler button small { color: #aaa; font-weight: 400; }
-.styler button[aria-pressed='true'] { background: #e31e25; }
-.styler button[aria-pressed='true'] small { color: #ffe1e1; }
-.styler button:focus-visible { outline: 2px solid #fff; }
-@media (max-width: 700px) { .styler { bottom: 76px; right: 12px; left: 12px; width: auto; display: flex; padding: 6px; } .styler b, .styler small { display: none; } .styler button { flex: 1; text-align: center; padding: 8px 4px; } }
 @media (prefers-reduced-motion: reduce) { .btn, .ph img { transition: none; } }

@@ -15,7 +15,6 @@ npm run build    # готовый сайт в dist/ — выкладываетс
 
 ## Публикация
 При пуше в `main` GitHub Actions собирает сайт и публикует на GitHub Pages (домен из `public/CNAME`). В настройках репозитория: Settings → Pages → Source: **GitHub Actions**.
-- Переключатель стилей A/B/C в `src/layouts/Base.astro` (блок `.styler`) — удалить после выбора.
 - `public/img/food/` — фото блюд (webp, 640 и 1200 px).
 
 ## Форма отзывов
