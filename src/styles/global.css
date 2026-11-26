@@ -225,3 +225,4 @@ details p { color: var(--muted); }
 }
 
 @media (prefers-reduced-motion: reduce) { .btn, .ph img { transition: none; } }
+.gallery .ph { border-radius: var(--radius); }

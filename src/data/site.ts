@@ -35,7 +35,8 @@ export type Location = {
   intro: string;
   howToGet: string;
   highlights: string[];
-  photo: string; // фото блюда вместо фото точки, пока нет съёмки зала
+  photo: string; // главное фото: 'loc/…' — съёмка точки, иначе фото блюда из img/food
+  gallery?: string[]; // дополнительные фото точки из img/loc
 };
 
 const defaultHours: Hours[] = [
@@ -68,7 +69,8 @@ export const locations: Location[] = [
   },
   {
     slug: 'aminevskoe',
-    photo: 'doner-tarelka',
+    photo: 'loc/ami-1',
+    gallery: ['loc/ami-2', 'loc/ami-3', 'loc/ami-4'],
     name: 'Аминьевское шоссе',
     title: 'Alibaba Doner на Аминьевском шоссе',
     address: 'Аминьевское ш., 6',
@@ -91,7 +93,8 @@ export const locations: Location[] = [
   },
   {
     slug: 'universitet',
-    photo: 'pide-kiymaly',
+    photo: 'loc/ver-1',
+    gallery: ['loc/ver-3', 'loc/ver-2', 'loc/ver-4'],
     name: 'Университет',
     title: 'Alibaba Döneri на проспекте Вернадского',
     address: 'пр-т Вернадского, 6',
@@ -114,7 +117,8 @@ export const locations: Location[] = [
   },
   {
     slug: 'seligerskaya',
-    photo: 'kombo-shaurma',
+    photo: 'loc/sel-1',
+    gallery: ['loc/sel-3', 'loc/sel-2', 'loc/sel-4'],
     name: 'Селигерская',
     title: 'Alibaba Döneri у метро Селигерская',
     address: 'Коровинское ш., 2',
@@ -255,9 +259,9 @@ export const chefs = [
 // Как мы готовим. Фото — временные, заменить на фото процесса.
 export const steps = [
   { t: 'Маринуем мясо', d: 'Цельные куски халяльной говядины и баранины маринуем в йогурте, луке и специях по турецкому рецепту.', img: '' },
-  { t: 'Собираем вертел', d: 'Каждое утро повар вручную укладывает мясо слоями на вертел. Это не фарш и не прессованный полуфабрикат.', img: 'doner-tarelka' },
+  { t: 'Собираем вертел', d: 'Каждое утро повар вручную укладывает мясо слоями на вертел. Это не фарш и не прессованный полуфабрикат.', img: 'loc/ami-2' },
   { t: 'Печём хлеб', d: 'Экмек, лаваш и тесто для пиде готовим сами. Лепёшка для вашего донера испечена сегодня.', img: 'ekmek' },
-  { t: 'Режем при вас', d: 'Срезаем тонкую поджаристую стружку с вертела и собираем донер на ваших глазах.', img: 'sendvich-doner' },
+  { t: 'Режем при вас', d: 'Срезаем тонкую поджаристую стружку с вертела и собираем донер на ваших глазах.', img: 'loc/ver-3' },
 ];
 
 // Кейтеринг
